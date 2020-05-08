@@ -1,0 +1,169 @@
+{
+  "contents": "positive news stories",
+  "source": "www.reddit.com/r/UpliftingNews/",
+  "method": "bot_pulldown",
+  "items": [
+    {
+      "id": "gfavxz",
+      "author": "Balls_of_Adamanthium",
+      "title": "US Supreme Court Ruth Bader Ginsburg released from hospital after gallbladder treatment",
+      "url": "https://www.cbsnews.com/news/ruth-bader-ginsburg-released-hospital-supreme-court/"
+    },
+    {
+      "id": "gfjsfx",
+      "author": "outhouse_steakhouse",
+      "title": "A dolphin who used to play with tourists has become lonely during lockdown, so a fisherman has started going out every day to visit him.",
+      "url": "https://amp.independent.ie/irish-news/fungie-the-dolphin-lonely-in-lockdown-but-kind-fisherman-keeping-him-company-39187259.html"
+    },
+    {
+      "id": "gfa81s",
+      "author": "West_Sir",
+      "title": "India Becomes World\u2019s 2nd Largest PPE Kit Producer In Just Two Months; Develops World\u2019s First Reusable PPE Suit",
+      "url": "https://swarajyamag.com/insta/india-becomes-worlds-2nd-largest-ppe-kit-producer-in-just-two-months-develops-world-first-reusable-ppe-suit"
+    },
+    {
+      "id": "gf0alv",
+      "author": "Sulde",
+      "title": "New Banksy artwork appears at Southampton hospital, left with a note from the artist. It read: \"Thanks for all you're doing. I hope this brightens the place up a bit, even if it's only black and white.\"",
+      "url": "https://www.bbc.com/news/entertainment-arts-52556544"
+    },
+    {
+      "id": "gfkrxf",
+      "author": "cyanocittaetprocyon",
+      "title": "Germany passes law banning 'gay conversion therapy' for minors",
+      "url": "https://www.bbc.com/news/world-europe-52585162"
+    },
+    {
+      "id": "gflpsm",
+      "author": "Systemantix",
+      "title": "Germany's Bundestag passed a law which completely bans any so-called \u201ctherapy\u201d that aims to change the sexual orientation of minors, and the crime will carry a prison sentence of up to one year | Health minister: \u201cHomosexuality is not a disease. Therefore the term therapy is misleading.\u201d",
+      "url": "https://www.pinknews.co.uk/2020/05/07/germany-conversion-therapy-ban-minors-adults-uk-us-to-shame-bundestag-jens-spahn/"
+    },
+    {
+      "id": "gfcmaq",
+      "author": "jimmysheirgill",
+      "title": "Thai Elephants walk 95 miles to home after 20 years of Work",
+      "url": "https://thediplomat.com/2020/05/thai-elephants-out-of-work-due-to-coronavirus-trudge-home/"
+    },
+    {
+      "id": "gfmie5",
+      "author": "Paracortex",
+      "title": "A teen found $135,000 next to an ATM. Instead of walking away with it, he called police.",
+      "url": "https://www.wjcl.com/article/a-teen-found-dollar135000-next-to-an-atm-instead-of-walking-away-with-it-he-called-police/32410116"
+    },
+    {
+      "id": "gfl82l",
+      "author": "SmilingAssassin23",
+      "title": "Gollum actor Andy Serkis will give a continuous live reading of The Hobbit live online to raise money for charity.",
+      "url": "https://www.bbc.co.uk/news/entertainment-arts-52568497"
+    },
+    {
+      "id": "gfavxz",
+      "author": "Balls_of_Adamanthium",
+      "title": "US Supreme Court Ruth Bader Ginsburg released from hospital after gallbladder treatment",
+      "url": "https://www.cbsnews.com/news/ruth-bader-ginsburg-released-hospital-supreme-court/"
+    },
+    {
+      "id": "gfjsfx",
+      "author": "outhouse_steakhouse",
+      "title": "A dolphin who used to play with tourists has become lonely during lockdown, so a fisherman has started going out every day to visit him.",
+      "url": "https://amp.independent.ie/irish-news/fungie-the-dolphin-lonely-in-lockdown-but-kind-fisherman-keeping-him-company-39187259.html"
+    },
+    {
+      "id": "gfa81s",
+      "author": "West_Sir",
+      "title": "India Becomes World\u2019s 2nd Largest PPE Kit Producer In Just Two Months; Develops World\u2019s First Reusable PPE Suit",
+      "url": "https://swarajyamag.com/insta/india-becomes-worlds-2nd-largest-ppe-kit-producer-in-just-two-months-develops-world-first-reusable-ppe-suit"
+    },
+    {
+      "id": "gf0alv",
+      "author": "Sulde",
+      "title": "New Banksy artwork appears at Southampton hospital, left with a note from the artist. It read: \"Thanks for all you're doing. I hope this brightens the place up a bit, even if it's only black and white.\"",
+      "url": "https://www.bbc.com/news/entertainment-arts-52556544"
+    },
+    {
+      "id": "gfkrxf",
+      "author": "cyanocittaetprocyon",
+      "title": "Germany passes law banning 'gay conversion therapy' for minors",
+      "url": "https://www.bbc.com/news/world-europe-52585162"
+    },
+    {
+      "id": "gflpsm",
+      "author": "Systemantix",
+      "title": "Germany's Bundestag passed a law which completely bans any so-called \u201ctherapy\u201d that aims to change the sexual orientation of minors, and the crime will carry a prison sentence of up to one year | Health minister: \u201cHomosexuality is not a disease. Therefore the term therapy is misleading.\u201d",
+      "url": "https://www.pinknews.co.uk/2020/05/07/germany-conversion-therapy-ban-minors-adults-uk-us-to-shame-bundestag-jens-spahn/"
+    },
+    {
+      "id": "gfmie5",
+      "author": "Paracortex",
+      "title": "A teen found $135,000 next to an ATM. Instead of walking away with it, he called police.",
+      "url": "https://www.wjcl.com/article/a-teen-found-dollar135000-next-to-an-atm-instead-of-walking-away-with-it-he-called-police/32410116"
+    },
+    {
+      "id": "gfcmaq",
+      "author": "jimmysheirgill",
+      "title": "Thai Elephants walk 95 miles to home after 20 years of Work",
+      "url": "https://thediplomat.com/2020/05/thai-elephants-out-of-work-due-to-coronavirus-trudge-home/"
+    },
+    {
+      "id": "gfirh6",
+      "author": "BlueLight03",
+      "title": "Father and son arrested, charged with murder in shooting death of Ahmaud Arbery",
+      "url": "https://newschannel9.com/news/nation-world/gbi-father-and-son-arrested-charged-with-murder-in-shooting-death-of-ahmaud-arbery"
+    },
+    {
+      "id": "gfavxz",
+      "author": "Balls_of_Adamanthium",
+      "title": "US Supreme Court Ruth Bader Ginsburg released from hospital after gallbladder treatment",
+      "url": "https://www.cbsnews.com/news/ruth-bader-ginsburg-released-hospital-supreme-court/"
+    },
+    {
+      "id": "gfjsfx",
+      "author": "outhouse_steakhouse",
+      "title": "A dolphin who used to play with tourists has become lonely during lockdown, so a fisherman has started going out every day to visit him.",
+      "url": "https://amp.independent.ie/irish-news/fungie-the-dolphin-lonely-in-lockdown-but-kind-fisherman-keeping-him-company-39187259.html"
+    },
+    {
+      "id": "gfa81s",
+      "author": "West_Sir",
+      "title": "India Becomes World\u2019s 2nd Largest PPE Kit Producer In Just Two Months; Develops World\u2019s First Reusable PPE Suit",
+      "url": "https://swarajyamag.com/insta/india-becomes-worlds-2nd-largest-ppe-kit-producer-in-just-two-months-develops-world-first-reusable-ppe-suit"
+    },
+    {
+      "id": "gf0alv",
+      "author": "Sulde",
+      "title": "New Banksy artwork appears at Southampton hospital, left with a note from the artist. It read: \"Thanks for all you're doing. I hope this brightens the place up a bit, even if it's only black and white.\"",
+      "url": "https://www.bbc.com/news/entertainment-arts-52556544"
+    },
+    {
+      "id": "gfkrxf",
+      "author": "cyanocittaetprocyon",
+      "title": "Germany passes law banning 'gay conversion therapy' for minors",
+      "url": "https://www.bbc.com/news/world-europe-52585162"
+    },
+    {
+      "id": "gflpsm",
+      "author": "Systemantix",
+      "title": "Germany's Bundestag passed a law which completely bans any so-called \u201ctherapy\u201d that aims to change the sexual orientation of minors, and the crime will carry a prison sentence of up to one year | Health minister: \u201cHomosexuality is not a disease. Therefore the term therapy is misleading.\u201d",
+      "url": "https://www.pinknews.co.uk/2020/05/07/germany-conversion-therapy-ban-minors-adults-uk-us-to-shame-bundestag-jens-spahn/"
+    },
+    {
+      "id": "gfmie5",
+      "author": "Paracortex",
+      "title": "A teen found $135,000 next to an ATM. Instead of walking away with it, he called police.",
+      "url": "https://www.wjcl.com/article/a-teen-found-dollar135000-next-to-an-atm-instead-of-walking-away-with-it-he-called-police/32410116"
+    },
+    {
+      "id": "gfcmaq",
+      "author": "jimmysheirgill",
+      "title": "Thai Elephants walk 95 miles to home after 20 years of Work",
+      "url": "https://thediplomat.com/2020/05/thai-elephants-out-of-work-due-to-coronavirus-trudge-home/"
+    },
+    {
+      "id": "gfl82l",
+      "author": "SmilingAssassin23",
+      "title": "Gollum actor Andy Serkis will give a continuous live reading of The Hobbit live online to raise money for charity.",
+      "url": "https://www.bbc.co.uk/news/entertainment-arts-52568497"
+    }
+  ]
+}
