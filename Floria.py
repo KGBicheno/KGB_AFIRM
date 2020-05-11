@@ -251,7 +251,7 @@ async def good_news_bot(ctx):
 		subreddit = reddit.subreddit('UpliftingNews')
 		news_list =  subreddit.hot(limit=10)
 		for submission in news_list:
-			if str(submission).id not in calm_news_catalogue.values():
+			if str(submission.id) not in calm_news_catalogue.values():
 				yarn_dict = dict( id = str(submission.id), author = str(submission.author), title = str(submission.title), url = str(submission.url))
 				calm_news_catalogue['items'].append(yarn_dict)
 		with open("good_news.json", "w") as storage:
