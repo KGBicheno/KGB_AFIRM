@@ -176,6 +176,7 @@ async def backup_aww_pics(ctx):
 	with open("calm_posts.json", "r") as source:
 		pic_container = json.load(source)
 	pic_list = pic_container["images"]
+	bot.reload_extension('cogs.golem')
 	pic_hit = random.randrange(1, len(pic_list))
 	dict_pic = pic_list[pic_hit]
 	v = dict_pic.get('url')
