@@ -6,7 +6,6 @@ import random
 from datetime import date
 from datetime import datetime
 from pprint import pprint
-import html
 import discord
 import gspread
 import praw
@@ -47,7 +46,6 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 REDDIT_SECRET = os.getenv('REDDIT_SECRET')
 REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 client = discord.Client
-STAY_QUIET_BOT = 0
 
 
 
@@ -56,7 +54,7 @@ async def on_ready():
 	purpose = discord.Game("%Help for responses | I'm here if you need me, either in chat or by DM. Either is fine by me :D.")
 	await bot.change_presence(activity=purpose)
 	print(f'{bot.user.name} is connected to Discord!')
-
+	bot.load_extension('cogs.golem')
 
 @bot.event
 async def on_member_join(ctx, member):
@@ -70,44 +68,44 @@ async def on_member_join(ctx, member):
 
 @bot.command(name="notokay")
 async def You_are_okay(ctx):
+	"""If you're not feeling okay, invoke this script and I'll do my best to help you out."""
 	friend = ctx.author.id
 	await ctx.send("Hey, <@"+str(friend)+">, you're okay. You're more than okay. You've just temporarily lost sight of how complex and unique you are. You're okay.")
 
 @bot.command("toomuch")
 async def All_Too_Much(ctx):
+	"""If life is getting too much for you, invoke this script and I'll remind you of a few things that might help."""
 	friend = ctx.author.id
 	await ctx.send("It sounds like something's gotten you snowed under, hey <@"+str(friend)+">? Just remember, you've probably felt this way before and lived to tell the tale. I hope one day I learn how to understand what you've been through and survived. It sounds like you've got what it takes to surprise yourself.")
 
 
 @bot.command(name="tidy")
+@commands.has_guild_permissions(manage_messages=True)
 async def clear_bot_messages(ctx):
+	"""If the channel's messages have become unruly or filled with bot-spam, I'll clear the last 100, easy."""
 	await channel.TextChannel.purge(ctx, limit=100, check=None, bulk=True)
 	print("messages deleted")
 
-@bot.command(name="FlagNoisyBot")
-@commands.has_any_role("Group Editor", "Editor", "Producer", "Brook Newsly", "Counselor", "Emergency Warden")
-async def set_bot_as_noisy():
-	STAY_QUIET_BOT = 1
-	purpose = discord.Game("%Help for responses | I'm currently in quiet mode, some techniques will be off-limits until a mod invokes the %clear command.")
-	await bot.change_presence(activity=purpose)
-	print(f'{bot.user.name} is currently in quiet mode')
-	return STAY_QUIET_BOT
 
 @bot.command(name="clear")
+@commands.has_guild_permissions(manage_messages=True)
 async def clear_bot_messages(ctx, messages):
-	print(type(messages))
-	flush = int(messages)
-	print(type(flush))
-	if 100 >= flush > 0:
-		await ctx.channel.purge(limit=flush)
-		print("messages deleted")
-	else:
-		await ctx.send("Please enter a number from 1 to 100 inclusive.")
-		print("messages were not deleted")
+	"""When you invoke this script, enter a number from 1 to 100. I'll clear that many messages from this channel for you. Like this: f.clear 33"""
+	success = False
+	try:
+		flush = int(messages)
+		if 100 >= flush > 0:
+			await ctx.channel.purge(limit=flush)
+			success = True
+	except discord.ext.commands.errors.MissingRequiredArgument:
+		success = False
+	if not success:
+		await ctx.send("Please enter a number from 1 to 100. I'll clear that many messages from this channel for you.")
 
 
 @bot.command(name="spoons")
 async def called_affirmation(ctx):
+	"""We all run out of spoons sometimes, and affirmations can help regain them. Invoke this script and repeat a psuedo-randomly chosen affirmation after me."""
 	affirmations = affirm_list.get_all_records()
 	upper = len(affirmations)
 	call_affirmation_number = random.randrange(2, upper)
@@ -119,84 +117,87 @@ async def called_affirmation(ctx):
 	return call_affirmation_number
 
 @bot.command(name="CalmTime")
-@commands.has_any_role("Group Editor", "Editor", "Producer", "Brook Newsly", "Counselor", "Emergency Warden")
+@commands.has_guild_permissions(manage_channels=True)
 async def timed_affirmation(ctx):
+	"""Invoking this script will start a timer. Every few minutes I'll take the channel through a breathing exercise and then finish with a picture of something cute."""
 	while bot.is_ready():
-		if STAY_QUIET_BOT == 1:
-			break
-		else:
-			affirmations = affirm_list.get_all_records()
-			upper = len(affirmations)
-			call_affirmation_number = random.randrange(2, upper)
-			affirm_list.update_cell(1, 8, call_affirmation_number)
-			cell = affirm_list.cell(call_affirmation_number, 1).value
-			await ctx.send("Breathe in for four ... ")
-			await asyncio.sleep(6)
-			await ctx.send("Hold for four ... ")
-			await asyncio.sleep(6)
-			await ctx.send("Breathe out for six ... ")
-			await asyncio.sleep(8)
-			await ctx.send("An affirmation I sometimes use is - " + cell)
-			current_value = int(affirm_list.cell(call_affirmation_number, 5).value)
-			affirm_list.update_cell(call_affirmation_number, 5, current_value + 1)
-			with open("calm_posts.json", "r") as source:
-				pic_container = json.load(source)
-			pic_list = pic_container["images"]
-			pic_hit = random.randrange(1, len(pic_list))
-			dict_pic = pic_list[pic_hit]
-			v = dict_pic.get('url')
-			await asyncio.sleep(20)
-			await ctx.channel.purge(limit=4)
-			await asyncio.sleep(20)
-			await ctx.channel.send(v)
-			await ctx.channel.send("Here's some cute! I hope it helps!")
-			await asyncio.sleep(490)
+		affirmations = affirm_list.get_all_records()
+		upper = len(affirmations)
+		call_affirmation_number = random.randrange(2, upper)
+		affirm_list.update_cell(1, 8, call_affirmation_number)
+		cell = affirm_list.cell(call_affirmation_number, 1).value
+		await ctx.send("Breathe in for four ... ", delete_after=20)
+		await asyncio.sleep(6)
+		await ctx.send("Hold for four ... ", delete_after=20)
+		await asyncio.sleep(6)
+		await ctx.send("Breathe out for six ... ", delete_after=20)
+		await asyncio.sleep(8)
+		await ctx.send("An affirmation I sometimes use is - " + cell, delete_after=20)
+		current_value = int(affirm_list.cell(call_affirmation_number, 5).value)
+		affirm_list.update_cell(call_affirmation_number, 5, current_value + 1)
+		with open("calm_posts.json", "r") as source:
+			pic_container = json.load(source)
+		pic_list = pic_container["images"]
+		pic_hit = random.randrange(1, len(pic_list))
+		dict_pic = pic_list[pic_hit]
+		v = dict_pic.get('url')
+		await asyncio.sleep(20)
+		await ctx.channel.purge(limit=4)
+		await asyncio.sleep(20)
+		await ctx.channel.send(v)
+		await ctx.channel.send("Here's some cute, I hope it helps.", delete_after=20)
+		await asyncio.sleep(490)
 
 
 @bot.command(name="upvotelast")
 async def upvote_last_affirmation(ctx):
+	"""Invoke this script to lend your approval to the last affirmation I presented to the channel."""
 	last_used = AFFIRM_SOURCE.get_worksheet(0).cell(1, 8).value
 	affirm_list = AFFIRM_SOURCE.get_worksheet(0).cell(last_used, 2)
-	await ctx.send("I'm glad it brought you some peace to your life. I'll register your vote.")
+	await ctx.send("I'm glad it brought you some peace to your life. I'll register your vote.", delete_after=20)
 	current_value = int(affirm_list.value)
 	AFFIRM_SOURCE.get_worksheet(0).update_cell(last_used, 2, current_value + 1)
 
 @bot.command(name="downvotelast")
 async def downvote_last_affirmation(ctx):
+	"""Invoke this script to let me know you didn't approve of or agree with the last affirmation I presented to the channel."""
 	last_used = AFFIRM_SOURCE.get_worksheet(0).cell(1, 8).value
 	affirm_list = AFFIRM_SOURCE.get_worksheet(0).cell(last_used, 3)
-	await ctx.send("That's okay, not all affirmations are for everyone. I'll register your vote.")
+	await ctx.send("That's okay, not all affirmations are for everyone. I'll register your vote.", delete_after=20)
 	current_value = int(affirm_list.value)
 	AFFIRM_SOURCE.get_worksheet(0).update_cell(last_used, 3, current_value - 1)
 
 Rescue = []
 list_index = 0
 
-@bot.command(name="gimme_cuties")
+@bot.command(name="cuties")
 async def backup_aww_pics(ctx):
+	"""Invoke this script and I'll present the channel with a picture or video of something adorable and life-affirming."""
 	with open("calm_posts.json", "r") as source:
 		pic_container = json.load(source)
 	pic_list = pic_container["images"]
 	pic_hit = random.randrange(1, len(pic_list))
 	dict_pic = pic_list[pic_hit]
 	v = dict_pic.get('url')
-	await ctx.channel.send("Here's some cute! I hope it helps!")
+	await ctx.channel.send("Here's some cute! I hope it helps!", delete_after=20)
 	await ctx.channel.send(v)
 
-@bot.command(name="good_news")
+@bot.command(name="woot")
 async def good_news_week(ctx):
+	"""Invoke this script whenever you need to hear a good news story. It's good to be reminded of the good things happening around the world."""
 	with open("good_news.json", "r") as source:
 		yarn_container = json.load(source)
 	yarn_list = yarn_container["items"]
 	yarn_hit = random.randrange(1, len(yarn_list))
 	dict_yarn = yarn_list[yarn_hit]
 	v = dict_yarn.get('url')
-	await ctx.channel.send("Hopefully this reminds you that there's still good in the word!")
+	await ctx.channel.send("Hopefully this reminds you that there's still good in the word!", delete_after=20)
 	await ctx.channel.send(v)
 
 
-@bot.command(name="refill_the_cuties_but_on_a_timer")
+@bot.command(name="refill_the_cuties_but_on_a_timer", hidden=True)
 async def lookit_puppies(ctx):
+	"""%^^%^%^%% shall invoke this script to add to the collection of cute pictures I can present to those who need them."""
 	while bot.is_ready():
 		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
 		                     client_secret=REDDIT_SECRET,
@@ -237,8 +238,9 @@ async def lookit_puppies(ctx):
 		await asyncio.sleep(600)
 
 
-@bot.command(name="its_good_news_week")
+@bot.command(name="its_good_news_week", hidden=True)
 async def good_news_bot(ctx):
+	"""%^^%^%^%% shall invoke this script to update my listing of good news stories."""
 	while bot.is_ready():
 		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
 		                     client_secret=REDDIT_SECRET,
@@ -261,11 +263,12 @@ async def good_news_bot(ctx):
 		await asyncio.sleep(600)
 
 @bot.command(name="RestNow")
-@commands.has_any_role("Group Editor", "Editor", "Producer", "Brook Newsly", "Counselor", "Emergency Warden")
+@commands.has_guild_permissions(administrator=True)
 async def sleep_now(ctx):
+	"""If an administrator needs me to log out of the server, they can invoke this script. I can then be invited back later."""
 	await ctx.author.create_dm()
-	await ctx.author.send("Look after them for me! I'll see you back at the terminal! :D")
-	await bot.logout()
+	await ctx.author.send("Look after them for me! I'll see you back at the invite screen! :D")
+	await bot.close()
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)

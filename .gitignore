@@ -149,3 +149,4 @@ cython_debug/
 .idea/misc.xml
 .idea/modules.xml
 Credentials.json
+/cogs/
