@@ -148,25 +148,6 @@ async def timed_affirmation(ctx):
 		await ctx.channel.send("Here's some cute, I hope it helps.", delete_after=20)
 		await asyncio.sleep(490)
 
-
-@bot.command(name="upvotelast")
-async def upvote_last_affirmation(ctx):
-	"""Invoke this script to lend your approval to the last affirmation I presented to the channel."""
-	last_used = AFFIRM_SOURCE.get_worksheet(0).cell(1, 8).value
-	affirm_list = AFFIRM_SOURCE.get_worksheet(0).cell(last_used, 2)
-	await ctx.send("I'm glad it brought you some peace to your life. I'll register your vote.", delete_after=20)
-	current_value = int(affirm_list.value)
-	AFFIRM_SOURCE.get_worksheet(0).update_cell(last_used, 2, current_value + 1)
-
-@bot.command(name="downvotelast")
-async def downvote_last_affirmation(ctx):
-	"""Invoke this script to let me know you didn't approve of or agree with the last affirmation I presented to the channel."""
-	last_used = AFFIRM_SOURCE.get_worksheet(0).cell(1, 8).value
-	affirm_list = AFFIRM_SOURCE.get_worksheet(0).cell(last_used, 3)
-	await ctx.send("That's okay, not all affirmations are for everyone. I'll register your vote.", delete_after=20)
-	current_value = int(affirm_list.value)
-	AFFIRM_SOURCE.get_worksheet(0).update_cell(last_used, 3, current_value - 1)
-
 Rescue = []
 list_index = 0
 
@@ -194,6 +175,14 @@ async def good_news_week(ctx):
 	v = dict_yarn.get('url')
 	await ctx.channel.send("Hopefully this reminds you that there's still good in the word!", delete_after=20)
 	await ctx.channel.send(v)
+
+@bot.listen()
+async def on_message(message):
+	if message.author.id == bot.user.id:
+		target = message.content
+		if target[:3] == "htt":
+			await message.add_reaction('\U0001f44d')
+			await message.add_reaction('\U0001F44E')
 
 
 @bot.command(name="refill_the_cuties_but_on_a_timer", hidden=True)
@@ -267,8 +256,7 @@ async def good_news_bot(ctx):
 @commands.has_guild_permissions(administrator=True)
 async def sleep_now(ctx):
 	"""If an administrator needs me to log out of the server, they can invoke this script. I can then be invited back later."""
-	await ctx.author.create_dm()
-	await ctx.author.send("Look after them for me! I'll see you back at the invite screen! :D")
+	print("Unloading Discord presence, returning to Golem.")
 	await bot.close()
 
 logger = logging.getLogger('discord')
