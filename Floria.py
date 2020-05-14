@@ -251,6 +251,20 @@ async def good_news_bot(ctx):
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
 
+@bot.command(name="promotev1")
+async def promote_release(ctx):
+	embed = discord.Embed(title="Floria V1.0.0 Release Notes",
+	                      url="https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot",
+	                      description="Finally, KGB_AFIRM [F1AM] Floria has reached her first major milestone - a 'stable' release. ", color = 0xff0000)
+	embed.set_author(name="Floria by Websinthe", url = "https://www.kgbicheno.com/", icon_url = "https://i.imgur.com/YsiSBKn.png")
+	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
+	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=True)
+	embed.add_field(name="Support Kieran's open-source work", value="https://www.buymeacoffee.com/KGBicheno", inline=True)
+	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/releases", inline=True)
+	embed.set_footer(text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions - so join us at The Liquid Lounge or on GitHub to make requests.")
+	embed.set_image(url="https://i.redd.it/4niji39a7qv41.jpg")
+	await ctx.send(embed=embed)
+
 @bot.command(name="RestNow")
 @commands.has_guild_permissions(administrator=True)
 async def sleep_now(ctx):
