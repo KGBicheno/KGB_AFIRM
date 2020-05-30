@@ -1,0 +1,4 @@
+  File "Floria.py", line 216
+    embed.set_author(name=json.get("copywright"), icon_url=json.get("hd_url"))
+                                                                             ^
+TabError: inconsistent use of tabs and spaces in indentation
