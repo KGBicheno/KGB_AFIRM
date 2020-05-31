@@ -89,7 +89,7 @@ async def All_Too_Much(ctx):
 
 @bot.command(name="tidy")
 @commands.has_guild_permissions(manage_messages=True)
-async def clear_bot_messages(ctx):
+async def clear_messages(ctx):
 	"""If the channel's messages have become unruly or filled with bot-spam, I'll clear the last 100, easy."""
 	await channel.TextChannel.purge(ctx, limit=100, check=None, bulk=True)
 	print("messages deleted")
@@ -198,6 +198,7 @@ async def on_message(message):
 
 @bot.command(name="woah")
 async def nasa_apod(ctx):
+	"""Invoke this script to cast your eyes across the universe to behold its wonders. What are our problems compared to such majesty? We are part of something staggering. """
 	url = "https://api.nasa.gov/planetary/apod"
 	await ctx.send("aligning mirrors")
 	year = str(random.randint(1996, 2020))
@@ -207,7 +208,6 @@ async def nasa_apod(ctx):
 	day = str(random.randint(1, 28)).zfill(2)
 	print(day)
 	date = year + "-" + month + "-" + day
-	print
 	hd = False
 	api_key = NASA_API_KEY
 	await ctx.send("setting capture state")
@@ -225,7 +225,37 @@ async def nasa_apod(ctx):
 	embed.set_image(url=image)
 	embed.set_footer(text="One day, with shuffling steps, we will get there. ")
 	await ctx.send(embed=embed)
-	
+
+@bot.command(name="mars")
+async def nasa_mars(ctx):
+	"""Invoke this script to scry the lands of the planet Mars through the eyes of the intrepid explorer, and my hero, Curiosity. """
+	url = "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos"
+	await ctx.send("Establishing interplanetary connection ...", delete_after=50)
+	await asyncio.sleep(2)
+	await ctx.send("Spooling up FTL signal modulator ...", delete_after=50)
+	await asyncio.sleep(2)
+	await ctx.send("Attempting Entanglement Twin Transfer Protocol ... ", delete_after=50)
+	sol = random.randint(1, 2778)
+	camera = "FHAZ"
+	api_key = NASA_API_KEY
+	await asyncio.sleep(2)
+	await ctx.send("Sending request to ettp://sol.curiosity.mars/ ...", delete_after=50)
+	PARAMS = {'sol':sol, 'camera':camera, 'api_key':api_key}
+	r = requests.get(url=url, params=PARAMS)
+	album = r.json()
+	await asyncio.sleep(3)
+	await ctx.send("Response detected!", delete_after=50)
+	left_camera = album.get("photos")[0]
+	right_camera = album.get("photos")[1]
+	sol = left_camera.get("sol")
+	earth_date = left_camera.get("earth_date")
+	left_image = left_camera.get("img_src")
+	right_image = right_camera.get("img_src")
+	description = "Rover: Curiosity \n Sol {} \n Earth date: {} \n Two photos recieved, left-hand & right-hand forward hazard cameras.".format(sol, earth_date)
+	await ctx.send(description)
+	await ctx.send(left_image)
+	await ctx.send(right_image)
+
  
 @bot.command(name="refill_the_cuties_but_on_a_timer", hidden=True)
 async def lookit_puppies(ctx):
@@ -316,6 +346,13 @@ async def promote_release(ctx):
 	embed.set_image(url="https://i.redd.it/4niji39a7qv41.jpg")
 	await ctx.send(embed=embed)
 
+@bot.command(name="SitRep", hidden=True)
+@commands.is_owner()
+async def guild_spread(ctx):
+	user = ctx.get_user(id=107221097174319104)
+	coverage = bot.guilds
+	for server in coverage:
+		await user.send(server)
 
 @bot.command(name="RestNow")
 @commands.has_guild_permissions(administrator=True)
