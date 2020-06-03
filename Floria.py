@@ -15,18 +15,22 @@ from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 import requests
 import random
+from discord.client import Client
+
+#TODO f.help | Override Floria's help class to have it present more clearly and professionaly
+
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 
 credentials = ServiceAccountCredentials.from_json_keyfile_name("/home/websinthe/sambashare/KGB_Golem/KGB_AFIRM/Credentials.json",
                                                                scope)
-
+#TODO ||Google block|| Completely remove my use of Google Sheets from Floria.
 gclient = gspread.authorize(credentials)
 AFFIRM_SOURCE = gclient.open("Affirmations")
 affirm_list = AFFIRM_SOURCE.get_worksheet(0)
 
-
+#TODO get_prefix() Put more thought into how you're advertising Floria's functions to new users
 def get_prefix(client, message):
 	prefixes = ['%', '?', 'f.']
 
@@ -45,6 +49,7 @@ bot = commands.Bot(
 now = date.today()
 today = now.isoformat()
 
+#TODO ||getenv block|| make sure the test unit isn't compromising the use of these at all
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
 REDDIT_SECRET = os.getenv('REDDIT_SECRET')
@@ -52,7 +57,7 @@ REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 NASA_API_KEY = os.getenv('NASA_API_KEY')
 client = discord.Client
 
-
+#TODO on_ready() Have this integrate with bot_conf and look into finally implementing cogs
 @bot.event
 async def on_ready():
 	purpose = discord.Game(
@@ -60,7 +65,7 @@ async def on_ready():
 	await bot.change_presence(activity=purpose)
 	print(f'{bot.user.name} is connected to Discord!')
 
-
+#TODO on_member_join() Hook this up to bot_conf when it gets pulled over and test it until it works
 @bot.event
 async def on_member_join(ctx, member):
 	if member.name != bot.user.name:
@@ -70,7 +75,7 @@ async def on_member_join(ctx, member):
 	else:
 		await ctx.send("What a lovely place to place to be.")
 
-
+#TODO You_are_okay() This is one of my favourite functions - write at least 50 more and pull them in from a JSON file
 @bot.command(name="notokay")
 async def You_are_okay(ctx):
 	"""If you're not feeling okay, invoke this script and I'll do my best to help you out."""
@@ -78,7 +83,7 @@ async def You_are_okay(ctx):
 	await ctx.send("Hey, <@" + str(
 		friend) + ">, you're okay. You're more than okay. You've just temporarily lost sight of how complex and unique you are. You're okay.")
 
-
+#TODO All_too_much() I love this function - write at least 50 or so and pull them from a JSON file
 @bot.command("toomuch")
 async def All_Too_Much(ctx):
 	"""If life is getting too much for you, invoke this script and I'll remind you of a few things that might help."""
@@ -86,7 +91,7 @@ async def All_Too_Much(ctx):
 	await ctx.send("It sounds like something's gotten you snowed under, hey <@" + str(
 		friend) + ">? Just remember, you've probably felt this way before and lived to tell the tale. I hope one day I learn how to understand what you've been through and survived. It sounds like you've got what it takes to surprise yourself.")
 
-
+#TODO clear_messages() Test this function until it works
 @bot.command(name="tidy")
 @commands.has_guild_permissions(manage_messages=True)
 async def clear_messages(ctx):
@@ -94,7 +99,7 @@ async def clear_messages(ctx):
 	await channel.TextChannel.purge(ctx, limit=100, check=None, bulk=True)
 	print("messages deleted")
 
-
+#TODO clear_bot_messages() Test this function until it works
 @bot.command(name="clear")
 @commands.has_guild_permissions(manage_messages=True)
 async def clear_bot_messages(ctx, messages):
@@ -110,7 +115,7 @@ async def clear_bot_messages(ctx, messages):
 	if not success:
 		await ctx.send("Please enter a number from 1 to 100. I'll clear that many messages from this channel for you.")
 
-
+#TODO called_affirmations() Overhaul this function to run off a JSON file instead of Google Sheets
 @bot.command(name="spoons")
 async def called_affirmation(ctx):
 	"""We all run out of spoons sometimes, and affirmations can help regain them. Invoke this script and repeat a psuedo-randomly chosen affirmation after me."""
@@ -124,7 +129,7 @@ async def called_affirmation(ctx):
 	affirm_list.update_cell(call_affirmation_number, 5, current_value + 1)
 	return call_affirmation_number
 
-
+#TODO timed_affirmations() overhaul this function to include a larger array of breathing excercises and run off JSON instead of GS
 @bot.command(name="CalmTime")
 @commands.has_guild_permissions(manage_channels=True)
 async def timed_affirmation(ctx):
@@ -162,6 +167,7 @@ Rescue = []
 list_index = 0
 
 
+#TODO backup_aww_pics() include optional arguments for type of media to return 
 @bot.command(name="cuties")
 async def backup_aww_pics(ctx):
 	"""Invoke this script and I'll present the channel with a picture or video of something adorable and life-affirming."""
@@ -174,7 +180,7 @@ async def backup_aww_pics(ctx):
 	await ctx.channel.send("Here's some cute! I hope it helps!", delete_after=20)
 	await ctx.channel.send(v)
 
-
+#TODO good_news_week() Add a trigger warning setting to bot_conf to filter this function's output
 @bot.command(name="woot")
 async def good_news_week(ctx):
 	"""Invoke this script whenever you need to hear a good news story. It's good to be reminded of the good things happening around the world."""
@@ -187,7 +193,7 @@ async def good_news_week(ctx):
 	await ctx.channel.send("Hopefully this reminds you that there's still good in the word!", delete_after=20)
 	await ctx.channel.send(v)
 
-
+#TODO on_message() Find a way to have this activate on any embed-type message the bot sends
 @bot.listen()
 async def on_message(message):
 	if message.author.id == bot.user.id:
@@ -196,6 +202,7 @@ async def on_message(message):
 			await message.add_reaction('\U0001f44d')
 			await message.add_reaction('\U0001F44E')
 
+#TODO woah() Check the endpoint for description data to make the images searchable by topic and add an optional parameter
 @bot.command(name="woah")
 async def nasa_apod(ctx):
 	"""Invoke this script to cast your eyes across the universe to behold its wonders. What are our problems compared to such majesty? We are part of something staggering. """
@@ -223,9 +230,10 @@ async def nasa_apod(ctx):
 	embed.add_field(name="Date", value=data.get("date"), inline=False)
 	embed.add_field(name="HD Download", value=image, inline=False)
 	embed.set_image(url=image)
-	embed.set_footer(text="One day, with shuffling steps, we will get there. ")
+	embed.set_footer(text="One day, with shuffling steps, we will get there.")
 	await ctx.send(embed=embed)
 
+#TODO nasa_mars() Look into optional arguments to have the L/R photos joined horizontally or show different cameras
 @bot.command(name="mars")
 async def nasa_mars(ctx):
 	"""Invoke this script to scry the lands of the planet Mars through the eyes of the intrepid explorer, and my hero, Curiosity. """
@@ -256,8 +264,41 @@ async def nasa_mars(ctx):
 	await ctx.send(left_image)
 	await ctx.send(right_image)
 
- 
-@bot.command(name="refill_the_cuties_but_on_a_timer", hidden=True)
+#TODO no_borders() Pull down all the images for a date and find a library to convert them into a slow gif
+@bot.command(name="noborders")
+async def no_borders(ctx):
+	url = "https://api.nasa.gov/EPIC/api/natural/images?api_key=vslTyZgoWJ4ZfjZpzFJhADiwGc32huIanV9KZSEn"
+
+	payload = {}
+	headers = {
+			'Cookie': 'XSRF-TOKEN=eyJpdiI6IjhHUjdidjVKVGNoOGlWTXRyZjNNSFE9PSIsInZhbHVlIjoiXC91ZlpwbURjY1RRXC9RU2tvQVNtaWxydVA4akxNcEtZVVZwMVBidDJuSDhQT1Y0bG1KRU8zV3l6ZlZDTFB6RVhoIiwibWFjIjoiMjdkNGNhNjZkZWU1NGRkZTY4OTZkM2Y5YTRmMGZmMThkNTgxMGE5Y2U2MmRkYjQyMmFlYWI1NDM2NTJmMWFlMiJ9; laravel_session=eyJpdiI6IkR3NjhpV0E3VU5TV3oyd1RGdm1wZ2c9PSIsInZhbHVlIjoiVkczazhvc1dmRGJOa0IrRlFHa1BadUsyVGVSOUpYUGJoeUpXdnYxTVpCZEQ0TTc5NlhFVmhlWjRyY0dvMGVxUiIsIm1hYyI6IjUzMzhhMjNmYzA5NzVmYmFlNTVhZTlmMmRjNzAwZmMxMGJlNWFmM2RjMGY5ZGJmNmU2YzUzN2JjNzZhN2Y2MDcifQ%3D%3D'
+	}
+
+	response = requests.request("GET", url, headers=headers, data = payload)
+	print(type(response))
+	for x in response.json():
+		photo_description = str(x.get("caption"))
+		photo_slug = str(x.get("image"))
+		photo_time = (str(x.get("date"))).split(" ", 1)
+		photo_date = photo_time[0]
+		print(photo_date)
+		photo_year = photo_date[0:4]
+		photo_month = photo_date[5:7].zfill(2)
+		photo_day = photo_date[9:10].zfill(2)
+		photo_url = "https://epic.gsfc.nasa.gov/archive/natural/{}/{}/{}/png/{}.png?api_key={}".format(photo_year, photo_month, photo_day, photo_slug, NASA_API_KEY)
+	print(photo_url)
+	await ctx.send("Incoming transmission from Nasa's EPIC project.")
+	embed = discord.Embed(title="There are no borders",
+	                      url=photo_url,
+	                      description=photo_description,
+	                      color=0xffffff)
+	embed.set_author(name="NASA EPIC", icon_url="https://i.imgur.com/7gnuJ1z.png")
+	embed.set_image(url=photo_url)
+	embed.set_footer(text="It's not enough to remember there are no borders. One has to remember how much of your daily lives are contrived. Base principles are forgotten. Harmony is imperitive.")
+	await ctx.send(embed=embed)
+
+#TODO lookit_puppies() Reinvestigate the endpoint for future analytical needs
+@bot.command(name="refill_the_cuties", hidden=True)
 async def lookit_puppies(ctx):
 	"""%^^%^%^%% shall invoke this script to add to the collection of cute pictures I can present to those who need them."""
 	while bot.is_ready():
@@ -300,7 +341,7 @@ async def lookit_puppies(ctx):
 		print("Last refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
 
-
+#TODO good_news_bot() Map the reddit endpoint for future analytical needs
 @bot.command(name="its_good_news_week", hidden=True)
 async def good_news_bot(ctx):
 	"""%^^%^%^%% shall invoke this script to update my listing of good news stories."""
@@ -325,34 +366,58 @@ async def good_news_bot(ctx):
 		pprint(calm_news_catalogue)
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
-
-
-@bot.command(name="promotev1")
+  
+#TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
+@bot.command(name="me")
 async def promote_release(ctx):
-	embed = discord.Embed(title="Floria V1.0.0 Release Notes",
+	embed = discord.Embed(title="Hi I'm Floria!",
 	                      url="https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot",
-	                      description="Finally, KGB_AFIRM [F1AM] Floria has reached her first major milestone - a 'stable' release. ",
+	                      description="I'm part of a team developed to try help when things aren't going so well. To explain, I was first created during the pandemic to help keep people company during isolation. Now I do the best I can to remind people that the world can be a wonderful place, even when life throws its worst at you.\n Try invoking my scripts like f.cuties, f.woah, or f.woot.\n See f.help for the full list!",
 	                      color=0xff0000)
-	embed.set_author(name="Floria by Websinthe", url="https://www.kgbicheno.com/",
+	embed.set_author(name="Floria by KGBicheno", url="https://www.kgbicheno.com/",
 	                 icon_url="https://i.imgur.com/YsiSBKn.png")
 	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
-	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=True)
-	embed.add_field(name="Support Kieran's open-source work", value="https://www.buymeacoffee.com/KGBicheno",
-	                inline=True)
-	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/releases",
-	                inline=True)
+	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=False)
+	embed.add_field(name="Support Kieran's community work", value="https://www.buymeacoffee.com/KGBicheno",
+	                inline=False)
+	embed.add_field(name="Join us on Patreon for tutorials and experimental features", value="https://www.patreon.com/KGBicheno",
+	                inline=False)
+	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/",
+	                inline=False)
 	embed.set_footer(
 		text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions - so join us at The Liquid Lounge or on GitHub to make requests.")
-	embed.set_image(url="https://i.redd.it/4niji39a7qv41.jpg")
+	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
 	await ctx.send(embed=embed)
 
 @bot.command(name="SitRep", hidden=True)
 @commands.is_owner()
 async def guild_spread(ctx):
-	user = ctx.get_user(id=107221097174319104)
+	await ctx.author.create_dm()
+	await ctx.author.send("I believe you were looking for this, yes? It's a list of all the guilds who've enlisted my talents.")
 	coverage = bot.guilds
 	for server in coverage:
-		await user.send(server)
+		await ctx.author.create_dm()
+		await ctx.author.send(server)
+
+#TODO maint_list() Have the results of the server sweep piped into bot_conf once pulled over from the test unit
+@bot.command(name="maint_list", hidden=True)
+@commands.is_owner()
+async def maint_list(ctx):
+	broadcast = []
+	patch = bot.guilds
+	for server in patch:
+		for chat in server.text_channels:
+			broadcast.append([server.name, chat.name, chat.id])
+	await ctx.send("I've made a list of the places my voice can be heard. Their numerals can be used to connect with those who dwell there.")
+	for x in range(len(broadcast)):
+		server_name = broadcast[x][0]
+		text_chat_name = broadcast[x][1]
+		text_chat_id = broadcast[x][2]
+		text_details = "Name: {} \n Id: {}".format(text_chat_name, text_chat_id)
+		await ctx.send(server_name)
+		await ctx.send(text_details)
+
+#TODO maint_mode() Implement Maint_mode to signal to servers or their owners that Floria will be entering maintainance mode and going offline
 
 @bot.command(name="RestNow")
 @commands.has_guild_permissions(administrator=True)
