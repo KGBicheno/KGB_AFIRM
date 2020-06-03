@@ -181,6 +181,7 @@ async def backup_aww_pics(ctx):
 	await ctx.channel.send(v)
 
 #TODO good_news_week() Add a trigger warning setting to bot_conf to filter this function's output
+# Also find a way of checking if they're actually uplifting, possibly by upvotes. Too many failures have come through.
 @bot.command(name="woot")
 async def good_news_week(ctx):
 	"""Invoke this script whenever you need to hear a good news story. It's good to be reminded of the good things happening around the world."""
