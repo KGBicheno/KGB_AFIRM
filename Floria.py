@@ -368,27 +368,27 @@ async def good_news_bot(ctx):
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
   
-#TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
-@bot.command(name="me")
-async def promote_release(ctx):
-	embed = discord.Embed(title="Hi I'm Floria!",
-	                      url="https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot",
-	                      description="I'm part of a team developed to try help when things aren't going so well. To explain, I was first created during the pandemic to help keep people company during isolation. Now I do the best I can to remind people that the world can be a wonderful place, even when life throws its worst at you.\n Try invoking my scripts like f.cuties, f.woah, or f.woot.\n See f.help for the full list!",
-	                      color=0xff0000)
-	embed.set_author(name="Floria by KGBicheno", url="https://www.kgbicheno.com/",
-	                 icon_url="https://i.imgur.com/YsiSBKn.png")
-	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
-	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=False)
-	embed.add_field(name="Support Kieran's community work", value="https://www.buymeacoffee.com/KGBicheno",
-	                inline=False)
-	embed.add_field(name="Join us on Patreon for tutorials and experimental features", value="https://www.patreon.com/KGBicheno",
-	                inline=False)
-	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/",
-	                inline=False)
-	embed.set_footer(
-		text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions - so join us at The Liquid Lounge or on GitHub to make requests.")
-	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
-	await ctx.send(embed=embed)
+##TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
+#@bot.command(name="me")
+#async def promote_release(ctx):
+#	embed = discord.Embed(title="Hi I'm Floria!",
+#	                      url="https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot",
+#	                      description="I'm part of a team developed to try help when things aren't going so well. To explain, I was first created during the pandemic to help keep people company during isolation. Now I do the best I can to remind people that the world can be a wonderful place, even when life throws its worst at you.\n Try invoking my scripts like f.cuties, f.woah, or f.woot.\n See f.help for the full list!",
+#	                      color=0xff0000)
+#	embed.set_author(name="Floria by KGBicheno", url="https://www.kgbicheno.com/",
+#	                 icon_url="https://i.imgur.com/YsiSBKn.png")
+#	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
+#	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=False)
+#	embed.add_field(name="Support Kieran's community work", value="https://www.buymeacoffee.com/KGBicheno",
+#	                inline=False)
+#	embed.add_field(name="Join us on Patreon for tutorials and experimental features", value="https://www.patreon.com/KGBicheno",
+#	                inline=False)
+#	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/",
+#	                inline=False)
+#	embed.set_footer(
+#		text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions - so join us at The Liquid Lounge or on GitHub to make requests.")
+#	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
+#	await ctx.send(embed=embed)
 
 @bot.command(name="SitRep", hidden=True)
 @commands.is_owner()
