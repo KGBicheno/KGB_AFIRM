@@ -14,8 +14,11 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 import requests
+from urllib.request import urlopen
 import random
 from discord.client import Client
+import urllib.request
+from bs4 import BeautifulSoup
 
 #TODO f.help | Override Floria's help class to have it present more clearly and professionaly
 
@@ -179,6 +182,34 @@ async def backup_aww_pics(ctx):
 	v = dict_pic.get('url')
 	await ctx.channel.send("Here's some cute! I hope it helps!", delete_after=20)
 	await ctx.channel.send(v)
+
+
+#TODO Add a counter and give percistance to the upvote/downcote symbols on each post
+@bot.command(name="cutebots")
+async def cutebots(ctx):
+	"""This script summons cute bots!"""
+	url = "https://cutebotcalendar.tumblr.com/"
+	parsed_url = urlopen(url)
+	bot_page = parsed_url.read()
+	soup = BeautifulSoup(bot_page, 'html.parser')
+	photo_list = []
+	date_list = []
+	for post in soup.find_all("div", "date"):
+		print(post.text.strip())
+		post_date = post.text.strip()
+		date_list.append(post_date)
+	for image in soup.find_all("img", "photo"):
+		print(image.get('src'))
+		post_image = image.get('src')
+		photo_list.append(post_image)
+	index = range(len(photo_list))
+	for x in index:
+		print(date_list[x])
+		print(photo_list[x])
+	await ctx.send("Today's cutebotcalendar presents:")
+	await ctx.send(date_list[0])
+	await ctx.send(photo_list[0])
+
 
 #TODO good_news_week() Add a trigger warning setting to bot_conf to filter this function's output
 # Also find a way of checking if they're actually uplifting, possibly by upvotes. Too many failures have come through.
@@ -367,7 +398,67 @@ async def good_news_bot(ctx):
 		pprint(calm_news_catalogue)
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
-  
+
+
+@bot.command(name="support")
+async def support_line(ctx):
+	embed=discord.Embed(title="Suicide Call Back Service", url="https://www.suicidecallbackservice.org.au/", description="Suicide Call Back Service provides 24/7 support if you or someone you know is feeling suicidal.", color=0xffffff)
+	embed.set_author(name="Mental Health Help Line", url="https://www.suicidecallbackservice.org.au/", icon_url="https://i.imgur.com/xfocDnV.png")
+	embed.set_thumbnail(url="https://i.imgur.com/xfocDnV.png")
+	embed.add_field(name="Phone", value="1300 659 467", inline=False)
+	embed.set_footer(text="Open 24/7")
+	await ctx.send(embed=embed)
+    
+	embed9=discord.Embed(title="QLife", url="https://qlife.org.au/", description="QLife provides nationwide telephone and web-based services to support lesbian, gay, bisexual, transgender and intersex (LGBTI) people of all ages.", color=0xffffff)
+	embed9.set_author(name="Mental Health Help Line", url="https://qlife.org.au/", icon_url="https://i.imgur.com/huk43uW.png")
+	embed9.set_thumbnail(url="https://i.imgur.com/huk43uW.png")
+	embed9.add_field(name="Phone", value="1800 184 527", inline=False)
+	embed9.set_footer(text="3pm-12am (midnight) AEST / 7 days a week")
+	await ctx.send(embed=embed9)
+
+	embed3=discord.Embed(title="Butterfly Foundation's National Helpline", url="https://thebutterflyfoundation.org.au/our-services/helpline/over-the-phone/", description="ED HOPE, is a free, confidential service that provides information, counselling and treatment referral for people with eating disorders, and body image and related issues.", color=0xffffff)
+	embed3.set_author(name="Mental Health Help Line", url="https://thebutterflyfoundation.org.au/our-services/helpline/over-the-phone/", icon_url="https://i.imgur.com/BYzgxVa.png")
+	embed3.set_thumbnail(url="https://i.imgur.com/BYzgxVa.png")
+	embed3.add_field(name="Phone", value="1800 650 890", inline=False)
+	embed3.set_footer(text="8am-midnight AEST / 7 days a week")
+	await ctx.send(embed=embed3)
+
+	embed4=discord.Embed(title="eheadspace", url="https://headspace.org.au/eheadspace/", description="eheadspace provides mental health and wellbeing support, information and services to young people aged 12 to 25 years and their families.", color=0xffffff)
+	embed4.set_author(name="Mental Health Help Line", url="https://headspace.org.au/eheadspace/", icon_url="https://i.imgur.com/NT1YKMc.png")
+	embed4.set_thumbnail(url="https://i.imgur.com/NT1YKMc.png")
+	embed4.add_field(name="Phone", value="1800 33 4673", inline=False)
+	embed4.set_footer(text="8am-midnight AEST / 7 days a week")
+	await ctx.send(embed=embed4)
+
+	embed5=discord.Embed(title="Kids Help Line", url="https://kidshelpline.com.au/", description="Kids Helpline is Australia’s only free 24/7 confidential and private counseling service specifically for children and young people aged 5 to 25.", color=0xffffff)
+	embed5.set_author(name="Mental Health Help Line", url="https://kidshelpline.com.au/", icon_url="https://i.imgur.com/mnvvDRQ.png")
+	embed5.set_thumbnail(url="https://i.imgur.com/mnvvDRQ.png")
+	embed5.add_field(name="Phone", value="1800 55 1800", inline=False)
+	embed5.set_footer(text="Open 24/7 ")
+	await ctx.send(embed=embed5)
+
+	embed6=discord.Embed(title="Lifeline", url="https://www.lifeline.org.au/", description="Lifeline provides 24-hour crisis counselling, support groups and suicide prevention services.", color=0xffffff)
+	embed6.set_author(name="Mental Health Help Line", url="https://www.lifeline.org.au/", icon_url="https://i.imgur.com/84dYdDv.png")
+	embed6.set_thumbnail(url="https://i.imgur.com/84dYdDv.png")
+	embed6.add_field(name="Phone", value="13 11 14.", inline=False)
+	embed6.set_footer(text="Open 24/7")
+	await ctx.send(embed=embed6)
+
+	embed7=discord.Embed(title="MensLine Australia", url="https://mensline.org.au/", description="MensLine Australia is a professional telephone and online support and information service for Australian men.", color=0xffffff)
+	embed7.set_author(name="Mental Health Help Line", url="https://mensline.org.au/", icon_url="https://i.imgur.com/ldayfoE.png")
+	embed7.set_thumbnail(url="https://i.imgur.com/ldayfoE.png")
+	embed7.add_field(name="Phone", value="1300 78 99 78", inline=False)
+	embed7.set_footer(text="Open 24 hours / 7 days a week")
+	await ctx.send(embed=embed7)
+
+	embed8=discord.Embed(title="MindSpot", url="https://mindspot.org.au/", description="MindSpot is a free telephone and online service for people with stress, worry, anxiety, low mood or depression. It provides online assessment and treatment for anxiety and depression. MindSpot is not an emergency or instant response service.", color=0xffffff)
+	embed8.set_author(name="Mental Health Help Line", url="https://mindspot.org.au/", icon_url="https://i.imgur.com/G8Cz800.png")
+	embed8.set_thumbnail(url="https://i.imgur.com/G8Cz800.png")
+	embed8.add_field(name="Phone", value="1800 61 44 34", inline=False)
+	embed8.set_footer(text="AEST, 8am-8pm (Mon-Fri), 8am-6pm (Sat)")
+	await ctx.send(embed=embed8)
+
+
 ##TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
 #@bot.command(name="me")
 #async def promote_release(ctx):
