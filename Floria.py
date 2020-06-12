@@ -299,7 +299,7 @@ async def nasa_mars(ctx):
 #TODO no_borders() Pull down all the images for a date and find a library to convert them into a slow gif
 @bot.command(name="noborders")
 async def no_borders(ctx):
-	url = "https://api.nasa.gov/EPIC/api/natural/images?api_key=vslTyZgoWJ4ZfjZpzFJhADiwGc32huIanV9KZSEn"
+	url = "https://api.nasa.gov/EPIC/api/natural/images?api_key={}".format(NASA_API_KEY)
 
 	payload = {}
 	headers = {
@@ -314,12 +314,12 @@ async def no_borders(ctx):
 		photo_time = (str(x.get("date"))).split(" ", 1)
 		photo_date = photo_time[0]
 		print(photo_date)
-		photo_year = photo_date[0:4]
+		photo_year = photo_date[0:4]                        
 		photo_month = photo_date[5:7].zfill(2)
 		photo_day = photo_date[9:10].zfill(2)
-		photo_url = "https://epic.gsfc.nasa.gov/archive/natural/{}/{}/{}/png/{}.png?api_key={}".format(photo_year, photo_month, photo_day, photo_slug, NASA_API_KEY)
+		photo_url = "https://epic.gsfc.nasa.gov/archive/enhanced/{}/{}/{}/png/{}.png".format(photo_year, photo_month, photo_day, photo_slug)
 	print(photo_url)
-	await ctx.send("Incoming transmission from Nasa's EPIC project.")
+	await ctx.send("Incoming transmission from the L1 Lagrange point. \n NASA::EPIC light-codex captured. \n Scrying truth from the void ...")
 	embed = discord.Embed(title="There are no borders",
 	                      url=photo_url,
 	                      description=photo_description,
@@ -402,6 +402,7 @@ async def good_news_bot(ctx):
 
 @bot.command(name="support")
 async def support_line(ctx):
+	"""Support lines for mental health situations as needed. Please feel free to use them. """
 	embed=discord.Embed(title="Suicide Call Back Service", url="https://www.suicidecallbackservice.org.au/", description="Suicide Call Back Service provides 24/7 support if you or someone you know is feeling suicidal.", color=0xffffff)
 	embed.set_author(name="Mental Health Help Line", url="https://www.suicidecallbackservice.org.au/", icon_url="https://i.imgur.com/xfocDnV.png")
 	embed.set_thumbnail(url="https://i.imgur.com/xfocDnV.png")
@@ -430,7 +431,7 @@ async def support_line(ctx):
 	embed4.set_footer(text="8am-midnight AEST / 7 days a week")
 	await ctx.send(embed=embed4)
 
-	embed5=discord.Embed(title="Kids Help Line", url="https://kidshelpline.com.au/", description="Kids Helpline is Australia’s only free 24/7 confidential and private counseling service specifically for children and young people aged 5 to 25.", color=0xffffff)
+	embed5=discord.Embed(title="Kids Help Line", url="https://kidshelpline.com.au/", description="Kids Helpline is Australiaâ€™s only free 24/7 confidential and private counseling service specifically for children and young people aged 5 to 25.", color=0xffffff)
 	embed5.set_author(name="Mental Health Help Line", url="https://kidshelpline.com.au/", icon_url="https://i.imgur.com/mnvvDRQ.png")
 	embed5.set_thumbnail(url="https://i.imgur.com/mnvvDRQ.png")
 	embed5.add_field(name="Phone", value="1800 55 1800", inline=False)

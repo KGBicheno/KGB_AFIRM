@@ -150,3 +150,7 @@ cython_debug/
 .idea/modules.xml
 Credentials.json
 /cogs/
+calm_posts.json
+good_news.json
+nohup.out
+run.log.tmp

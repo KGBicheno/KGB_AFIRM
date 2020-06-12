@@ -1,4 +1,198 @@
-  File "Floria.py", line 216
-    embed.set_author(name=json.get("copywright"), icon_url=json.get("hd_url"))
-                                                                             ^
-TabError: inconsistent use of tabs and spaces in indentation
+Ignoring exception in command mars:
+Traceback (most recent call last):
+  File "/home/websinthe/.local/lib/python3.8/site-packages/discord/ext/commands/core.py", line 83, in wrapped
+    ret = await coro(*args, **kwargs)
+  File "Floria.py", line 288, in nasa_mars
+    left_camera = album.get("photos")[0]
+IndexError: list index out of range
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/websinthe/.local/lib/python3.8/site-packages/discord/ext/commands/bot.py", line 892, in invoke
+    await ctx.command.invoke(ctx)
+  File "/home/websinthe/.local/lib/python3.8/site-packages/discord/ext/commands/core.py", line 797, in invoke
+    await injected(*ctx.args, **ctx.kwargs)
+  File "/home/websinthe/.local/lib/python3.8/site-packages/discord/ext/commands/core.py", line 92, in wrapped
+    raise CommandInvokeError(exc) from exc
+discord.ext.commands.errors.CommandInvokeError: Command raised an exception: IndexError: list index out of range
+Floria is connected to Discord!
+June 11, 2020
+June 10, 2020
+June 09, 2020
+June 08, 2020
+June 07, 2020
+June 06, 2020
+June 05, 2020
+June 04, 2020
+June 03, 2020
+June 02, 2020
+June 01, 2020
+May 31, 2020
+May 30, 2020
+May 29, 2020
+May 28, 2020
+https://66.media.tumblr.com/d4727dc6303af3259383b761fe79601c/b3eed639d262898e-e9/s500x750/94ceda0dbcef67a91ac95b5960346b3887fa7500.png
+https://66.media.tumblr.com/0feb97d91341cb68e275e13df1784a17/ce34cde71784d087-c9/s500x750/aee8ce36517811c6560ad4e511388453b19da5a9.png
+https://66.media.tumblr.com/91e1dbbd8f29b9f1ce1ff0a285ff0781/c3de1f4b75504868-48/s500x750/cb1517fc9e323965e4460f94fb50102a97ccbfe0.png
+https://66.media.tumblr.com/f935029979206a55f7d6801f21b4e9a6/15c7154a7f382669-21/s500x750/a1a4846844c4e12c27dca8809ee938aff86faad8.png
+https://66.media.tumblr.com/cd24df454fcb8a98ce284b02d7e03c9d/fbf9f06614500e51-06/s500x750/19dfde4be0dd4dccd71095da51bbb1fd43f45ab0.png
+https://66.media.tumblr.com/fbf08c484b8ee2e166e2bef9192700f3/243c69167e7d1b77-8b/s500x750/8067e906b9fa521c760c1604b08d675bd440eb8c.png
+https://66.media.tumblr.com/0d93770d357ef22c026b4506652e3fd5/6aa392ef10ef28f7-e0/s500x750/e3d773022401d86a946ce1c9ad29983c5e86dd8d.png
+https://66.media.tumblr.com/680790ab7afd255b64814e51691a5231/627c308a58d65edc-4b/s500x750/4e6256e93d35cdc5e5c45078624957d80fe5c81a.png
+https://66.media.tumblr.com/b1de3cc9a9f77badb1f746ece3cc4899/904d9583d0e5c9ec-c1/s500x750/15ae9253359ad8001a67c579093727c250e44aaf.png
+https://66.media.tumblr.com/c91b02c79a1b9b95c3c083cc458f1f82/39782031ae0c7b83-1e/s500x750/1fcc719d8b5b3f99f3834d101da85f732bd84c45.png
+https://66.media.tumblr.com/1bd6746a47797c40b2b022cf83c4d311/0e52eba705cd93cf-1f/s500x750/398248248f3ec4e4bed793d91b5fcaec5da71aae.png
+https://66.media.tumblr.com/9fa82d23f05ec21f78cca1d624dc9473/acc57537a0518ba9-10/s500x750/b1c02951c4804a8cdd4ac3264db982c9bd7e5fd3.png
+https://66.media.tumblr.com/51aa3b8aeaac0bb97d7eca0d9db20da6/6588460b04b1b89b-33/s500x750/021d59ad4ffad92a265dd63f9960c0368f2484a8.png
+https://66.media.tumblr.com/7407e51f677b2d98e29ab819f4dee2a7/f58fd5f001197388-f8/s500x750/21b20044f8a63201a4a74a1fe67d173b248d0c77.png
+https://66.media.tumblr.com/948745968a6923f425b9f924a0d6d13f/9fa265238d5284e1-04/s500x750/f1d140cfa28487bb2f1f5b7fd6748734a111fbee.png
+June 11, 2020
+https://66.media.tumblr.com/d4727dc6303af3259383b761fe79601c/b3eed639d262898e-e9/s500x750/94ceda0dbcef67a91ac95b5960346b3887fa7500.png
+June 10, 2020
+https://66.media.tumblr.com/0feb97d91341cb68e275e13df1784a17/ce34cde71784d087-c9/s500x750/aee8ce36517811c6560ad4e511388453b19da5a9.png
+June 09, 2020
+https://66.media.tumblr.com/91e1dbbd8f29b9f1ce1ff0a285ff0781/c3de1f4b75504868-48/s500x750/cb1517fc9e323965e4460f94fb50102a97ccbfe0.png
+June 08, 2020
+https://66.media.tumblr.com/f935029979206a55f7d6801f21b4e9a6/15c7154a7f382669-21/s500x750/a1a4846844c4e12c27dca8809ee938aff86faad8.png
+June 07, 2020
+https://66.media.tumblr.com/cd24df454fcb8a98ce284b02d7e03c9d/fbf9f06614500e51-06/s500x750/19dfde4be0dd4dccd71095da51bbb1fd43f45ab0.png
+June 06, 2020
+https://66.media.tumblr.com/fbf08c484b8ee2e166e2bef9192700f3/243c69167e7d1b77-8b/s500x750/8067e906b9fa521c760c1604b08d675bd440eb8c.png
+June 05, 2020
+https://66.media.tumblr.com/0d93770d357ef22c026b4506652e3fd5/6aa392ef10ef28f7-e0/s500x750/e3d773022401d86a946ce1c9ad29983c5e86dd8d.png
+June 04, 2020
+https://66.media.tumblr.com/680790ab7afd255b64814e51691a5231/627c308a58d65edc-4b/s500x750/4e6256e93d35cdc5e5c45078624957d80fe5c81a.png
+June 03, 2020
+https://66.media.tumblr.com/b1de3cc9a9f77badb1f746ece3cc4899/904d9583d0e5c9ec-c1/s500x750/15ae9253359ad8001a67c579093727c250e44aaf.png
+June 02, 2020
+https://66.media.tumblr.com/c91b02c79a1b9b95c3c083cc458f1f82/39782031ae0c7b83-1e/s500x750/1fcc719d8b5b3f99f3834d101da85f732bd84c45.png
+June 01, 2020
+https://66.media.tumblr.com/1bd6746a47797c40b2b022cf83c4d311/0e52eba705cd93cf-1f/s500x750/398248248f3ec4e4bed793d91b5fcaec5da71aae.png
+May 31, 2020
+https://66.media.tumblr.com/9fa82d23f05ec21f78cca1d624dc9473/acc57537a0518ba9-10/s500x750/b1c02951c4804a8cdd4ac3264db982c9bd7e5fd3.png
+May 30, 2020
+https://66.media.tumblr.com/51aa3b8aeaac0bb97d7eca0d9db20da6/6588460b04b1b89b-33/s500x750/021d59ad4ffad92a265dd63f9960c0368f2484a8.png
+May 29, 2020
+https://66.media.tumblr.com/7407e51f677b2d98e29ab819f4dee2a7/f58fd5f001197388-f8/s500x750/21b20044f8a63201a4a74a1fe67d173b248d0c77.png
+May 28, 2020
+https://66.media.tumblr.com/948745968a6923f425b9f924a0d6d13f/9fa265238d5284e1-04/s500x750/f1d140cfa28487bb2f1f5b7fd6748734a111fbee.png
+2014
+08
+03
+<class 'dict'>
+date
+explanation
+hdurl
+media_type
+service_version
+title
+url
+2005
+10
+02
+<class 'dict'>
+copyright
+date
+explanation
+hdurl
+media_type
+service_version
+title
+url
+2007
+05
+07
+<class 'dict'>
+date
+explanation
+hdurl
+media_type
+service_version
+title
+url
+2003
+12
+12
+<class 'dict'>
+copyright
+date
+explanation
+hdurl
+media_type
+service_version
+title
+url
+<class 'requests.models.Response'>
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+https://epic.gsfc.nasa.gov/archive/natural/2020/06/00/png/epic_1b_20200610231232.png?api_key=vslTyZgoWJ4ZfjZpzFJhADiwGc32huIanV9KZSEn
+<class 'requests.models.Response'>
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+https://epic.gsfc.nasa.gov/archive/natural/2020/06/00/png/epic_1b_20200610231232.png?api_key=vslTyZgoWJ4ZfjZpzFJhADiwGc32huIanV9KZSEn
+<class 'requests.models.Response'>
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+2020-06-10
+https://epic.gsfc.nasa.gov/archive/natural/2020/06/00/png/epic_1b_20200610231232.png?api_key=vslTyZgoWJ4ZfjZpzFJhADiwGc32huIanV9KZSEn
+Unloading Discord presence, returning to Golem.
