@@ -324,7 +324,8 @@ async def no_borders(ctx):
 																								photo_month, photo_day,
 																								photo_slug)
 	print(photo_url)
-	await ctx.send("Incoming transmission from the L1 Lagrange point. \n NASA::EPIC light-codex captured. \n Scrying truth from the void ...")
+	await ctx.send(
+		"Incoming transmission from the L1 Lagrange point. \n NASA::EPIC light-codex captured. \n Scrying truth from the void ...")
 	embed = discord.Embed(title="There are no borders",
 							url=photo_url,
 							description=photo_description,
