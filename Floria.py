@@ -299,14 +299,13 @@ async def nasa_mars(ctx):
 #TODO no_borders() Pull down all the images for a date and find a library to convert them into a slow gif
 @bot.command(name="noborders")
 async def no_borders(ctx):
-	url = "https://api.nasa.gov/EPIC/api/natural/images?api_key={}".format(NASA_API_KEY)
-
+	url = "https://api.nasa.gov/EPIC/api/enhanced/images?api_key={}".format(NASA_API_KEY)
 	payload = {}
 	headers = {
-			'Cookie': 'XSRF-TOKEN=eyJpdiI6IjhHUjdidjVKVGNoOGlWTXRyZjNNSFE9PSIsInZhbHVlIjoiXC91ZlpwbURjY1RRXC9RU2tvQVNtaWxydVA4akxNcEtZVVZwMVBidDJuSDhQT1Y0bG1KRU8zV3l6ZlZDTFB6RVhoIiwibWFjIjoiMjdkNGNhNjZkZWU1NGRkZTY4OTZkM2Y5YTRmMGZmMThkNTgxMGE5Y2U2MmRkYjQyMmFlYWI1NDM2NTJmMWFlMiJ9; laravel_session=eyJpdiI6IkR3NjhpV0E3VU5TV3oyd1RGdm1wZ2c9PSIsInZhbHVlIjoiVkczazhvc1dmRGJOa0IrRlFHa1BadUsyVGVSOUpYUGJoeUpXdnYxTVpCZEQ0TTc5NlhFVmhlWjRyY0dvMGVxUiIsIm1hYyI6IjUzMzhhMjNmYzA5NzVmYmFlNTVhZTlmMmRjNzAwZmMxMGJlNWFmM2RjMGY5ZGJmNmU2YzUzN2JjNzZhN2Y2MDcifQ%3D%3D'
+		'Cookie': 'XSRF-TOKEN=eyJpdiI6IjhHUjdidjVKVGNoOGlWTXRyZjNNSFE9PSIsInZhbHVlIjoiXC91ZlpwbURjY1RRXC9RU2tvQVNtaWxydVA4akxNcEtZVVZwMVBidDJuSDhQT1Y0bG1KRU8zV3l6ZlZDTFB6RVhoIiwibWFjIjoiMjdkNGNhNjZkZWU1NGRkZTY4OTZkM2Y5YTRmMGZmMThkNTgxMGE5Y2U2MmRkYjQyMmFlYWI1NDM2NTJmMWFlMiJ9; laravel_session=eyJpdiI6IkR3NjhpV0E3VU5TV3oyd1RGdm1wZ2c9PSIsInZhbHVlIjoiVkczazhvc1dmRGJOa0IrRlFHa1BadUsyVGVSOUpYUGJoeUpXdnYxTVpCZEQ0TTc5NlhFVmhlWjRyY0dvMGVxUiIsIm1hYyI6IjUzMzhhMjNmYzA5NzVmYmFlNTVhZTlmMmRjNzAwZmMxMGJlNWFmM2RjMGY5ZGJmNmU2YzUzN2JjNzZhN2Y2MDcifQ%3D%3D'
 	}
 
-	response = requests.request("GET", url, headers=headers, data = payload)
+	response = requests.request("GET", url, headers=headers, data=payload)
 	print(type(response))
 	for x in response.json():
 		photo_description = str(x.get("caption"))
@@ -314,19 +313,27 @@ async def no_borders(ctx):
 		photo_time = (str(x.get("date"))).split(" ", 1)
 		photo_date = photo_time[0]
 		print(photo_date)
-		photo_year = photo_date[0:4]                        
+		photo_year = photo_date[0:4]
 		photo_month = photo_date[5:7].zfill(2)
-		photo_day = photo_date[9:10].zfill(2)
-		photo_url = "https://epic.gsfc.nasa.gov/archive/enhanced/{}/{}/{}/png/{}.png".format(photo_year, photo_month, photo_day, photo_slug)
+		photo_day = photo_date[8:10].zfill(2)
+		photothumb = "https://epic.gsfc.nasa.gov/archive/enhanced/{}/{}/{}/thumbs/{}.jpg".format(photo_year,
+																									photo_month,
+																									photo_day,
+																									photo_slug)
+		photo_url = "https://epic.gsfc.nasa.gov/archive/enhanced/{}/{}/{}/png/{}.png".format(photo_year,
+																								photo_month, photo_day,
+																								photo_slug)
 	print(photo_url)
 	await ctx.send("Incoming transmission from the L1 Lagrange point. \n NASA::EPIC light-codex captured. \n Scrying truth from the void ...")
 	embed = discord.Embed(title="There are no borders",
-	                      url=photo_url,
-	                      description=photo_description,
-	                      color=0xffffff)
+							url=photo_url,
+							description=photo_description,
+							color=0xffffff)
 	embed.set_author(name="NASA EPIC", icon_url="https://i.imgur.com/7gnuJ1z.png")
+	embed.set_thumbnail(url=photothumb)
 	embed.set_image(url=photo_url)
-	embed.set_footer(text="It's not enough to remember there are no borders. One has to remember how much of your daily lives are contrived. Base principles are forgotten. Harmony is imperitive.")
+	embed.set_footer(
+		text="It's not enough to remember there are no borders. One has to remember how much of your daily lives are contrived. Base principles are forgotten. Harmony is imperitive.")
 	await ctx.send(embed=embed)
 
 #TODO lookit_puppies() Reinvestigate the endpoint for future analytical needs
