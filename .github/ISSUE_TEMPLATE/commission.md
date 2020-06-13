@@ -6,7 +6,7 @@
 
 **Contact Email:**
 
-**Contact Discord**
+**Contact Discord:**
 
 *Please note that only discord bots are being built at the moment.*
 
