@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Create a report to help us improve
+name: Commission
+about: Commission your own bot from scratch or based on a KGB original
 ---
 
 # New Cusom Bot
