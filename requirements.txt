@@ -53,7 +53,7 @@ gpg===1.13.1-unknown
 gspread==3.4.2
 haversine==2.2.0
 html5lib==1.0.1
-httplib2==0.17.2
+httplib2==0.18.0
 hyperlink==19.0.0
 idna==2.9
 imagesize==1.2.0
