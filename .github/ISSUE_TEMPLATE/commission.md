@@ -3,21 +3,21 @@ name: Commission
 about: Commission your own bot from scratch or based on a KGB original
 ---
 
-# New Cusom Bot
+# New Custom Bot
 
 ## Commissioner details:
 
-**Contact Name:**
+Contact Name:
 
-**Contact Email:**
+Contact Email:
 
-**Contact Discord:**
+Contact Discord:
 
 *Please note that only discord bots are being built at the moment.*
 
 ## Major details
 
-**Bot's primary purpose:**
+Bot's primary purpose:
 
 
 
@@ -26,6 +26,8 @@ about: Commission your own bot from scratch or based on a KGB original
 
 ---
 ## Technical requirements
+
+Pace an 'x' between the square brackets of any services your bot will require. 
 
 - [ ] Self-hosted
 
@@ -57,11 +59,11 @@ about: Commission your own bot from scratch or based on a KGB original
 ---
 ## Aesthetic notes
 
-**Bot Name:**
+Bot Name:
 
-**Bot verbal style:**
+Bot verbal style:
 
-**Colour scheme:**
+Colour scheme:
 
 ---
 
