@@ -58,6 +58,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 REDDIT_SECRET = os.getenv('REDDIT_SECRET')
 REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 NASA_API_KEY = os.getenv('NASA_API_KEY')
+REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
 client = discord.Client
 
 #TODO on_ready() Have this integrate with bot_conf and look into finally implementing cogs
@@ -343,7 +344,7 @@ async def no_borders(ctx):
 async def lookit_puppies(ctx):
 	"""%^^%^%^%% shall invoke this script to add to the collection of cute pictures I can present to those who need them."""
 	while bot.is_ready():
-		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
+		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
 		                     # redirect_uri="http://localhost:8080",
@@ -387,7 +388,7 @@ async def lookit_puppies(ctx):
 async def good_news_bot(ctx):
 	"""%^^%^%^%% shall invoke this script to update my listing of good news stories."""
 	while bot.is_ready():
-		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
+		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
 		                     user_agent="Floria_bot by /u/websinthe")
@@ -522,6 +523,34 @@ async def maint_list(ctx):
 		await ctx.send(text_details)
 
 #TODO maint_mode() Implement Maint_mode to signal to servers or their owners that Floria will be entering maintainance mode and going offline
+
+@bot.command(name="maint_mode")
+@commands.has_guild_permissions(administrator=True)
+async def count_down(ctx):
+	"""Alert subscribed channels that Floria will be going down for maintainence in 5 minutes."""
+	channel_list = [693739127169876038, 716816936650145832,	709616831266029590]
+	for code in channel_list:
+		channel = bot.get_channel(code)
+		await bot.channel.send("Hi everyone, I'll be disappearing in 5 minutes' time for regeneration.\n\n If I'll be needed in the next hour, please use f.delay_maint (eg. f.delay_maint I'm on the phone to someone who needs the mental health help line numbers.) \n\n If the reason given is sufficient, my downtime will be delayed.")
+	await asyncio.sleep(360)
+	with open("bot_conf.json", "r") as config:
+		conf = json.load(config)
+		if conf.get('delay-maint') == "0":
+			for code in channel_list:
+				channel = bot.get_channel(code)
+				await bot.channel.send("Returning to Golem.")
+			bot.logout()
+		else:
+			for code in channel_list:
+				channel = bot.get_channel(code)
+				await bot.channel.send("Delaying my return to Golem.")
+
+
+@bot.command(name="delay_maint")
+async def delay_maint(ctx, *, arg):
+    user = bot.get_user(107221097174319104)
+    await user.send("Someone has called for a delay to my return to Golem")
+    await user.send(arg)
 
 @bot.command(name="RestNow")
 @commands.has_guild_permissions(administrator=True)

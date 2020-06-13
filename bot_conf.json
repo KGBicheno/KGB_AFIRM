@@ -1,0 +1,48 @@
+{
+    "contents": "bot settings",
+    "bot": {
+        "name": "Aemilia",
+        "project": "KGB_AFIRM",
+        "designation": "F2AM",
+        "role": "testing"
+    },
+    "presence": [
+        {
+            "Guild": "Project Golem",
+            "Guild-ID": "487386699303878657",
+            "Channels": [
+                {
+                    "Channel-name": "digital-producer-chat",
+                    "Channel-id": "487386699303878659"
+                }
+            ]
+        }
+    ],
+    "next-downtime-start": "04-06-2020 10:00",
+    "next-downtime-end": "04-06-2020 17:00",
+    "hostname": "Leviathan",
+    "parent-bot": "Floria",
+    "data-files": [
+        {
+            "content": "reddit metadata",
+            "purpose": "cute media links",
+            "filename": "calm_posts.json",
+            "file-type": "JSON"
+        },
+        {
+            "content": "reddit metadata",
+            "purpose": "good news links",
+            "filename": "good_news.json",
+            "file-type": "JSON"
+        },
+        {
+            "content": "API and Auth credentials",
+            "purpose": "authentication",
+            "filename": "Credentials.json",
+            "file-type": "JSON"
+        }
+    ],
+    "log file": "None",
+    "cutebotdate": "11/06/2020",
+    "delay-maint": "0"
+}
