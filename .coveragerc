@@ -1,0 +1,19 @@
+[run]
+branch = True
+data_file = .coverage
+source = .
+omit =
+    */site-packages/*
+    *__init__*
+    *tests*
+
+[html]
+directory = htmlcov
+title = KGB AFIRM coverage report
+
+[report]
+omit =
+    */site-packages/*
+    *__init__*
+    *tests*
+show_missing = True
