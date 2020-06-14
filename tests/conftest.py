@@ -9,9 +9,9 @@ from kgb_afirm.floria_bot import FloriaBot
 
 
 @pytest.fixture
-def bot(event_loop):
-    bot_owner_id = 123456789
-    bot = FloriaBot(bot_owner_id, loop=event_loop)
+def bot(caplog, event_loop):
+    bot = FloriaBot(owner_id=123456789, token='987654321', loop=event_loop)
+    bot.create_bot()
     dpytest.configure(bot.bot)
     yield bot
     dpytest.sent_queue.empty()

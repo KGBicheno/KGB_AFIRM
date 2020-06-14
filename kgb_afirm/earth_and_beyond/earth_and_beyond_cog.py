@@ -73,7 +73,7 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
                 else:
                     await ctx.send(self._error_display_text)
 
-    #TODO nasa_mars() Look into optional arguments to have the L/R photos joined horizontally or show different cameras
+    # TODO nasa_mars() Look into optional arguments to have the L/R photos joined horizontally or show different cameras
     @commands.command(name="mars")
     async def nasa_mars(self, ctx: Context):
         """
@@ -128,7 +128,6 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
 
                 else:
                     await ctx.send(self._error_display_text)
-
 
     def _get_random_date(self, start: datetime.date, end: datetime.date = None) -> datetime.date:
         """Get a random date between start and end. End is optional and defaults to today."""

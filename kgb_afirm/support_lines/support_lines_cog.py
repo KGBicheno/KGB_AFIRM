@@ -6,7 +6,6 @@ from discord.ext import commands
 from discord.ext.commands import Context
 
 
-
 class SupportLinesCog(commands.Cog, name='Support Lines'):
     @commands.command(name="support")
     async def support_line(self, ctx: Context):
@@ -29,7 +28,6 @@ class SupportLinesCog(commands.Cog, name='Support Lines'):
 
                 embed.set_footer(text=item['footer_text'])
                 await ctx.send(embed=embed)
-
 
 
 def setup(bot):
