@@ -58,6 +58,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')
 REDDIT_SECRET = os.getenv('REDDIT_SECRET')
 REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 NASA_API_KEY = os.getenv('NASA_API_KEY')
+REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
 client = discord.Client
 
 #TODO on_ready() Have this integrate with bot_conf and look into finally implementing cogs
@@ -299,6 +300,7 @@ async def nasa_mars(ctx):
 #TODO no_borders() Pull down all the images for a date and find a library to convert them into a slow gif
 @bot.command(name="noborders")
 async def no_borders(ctx):
+	"""View the world from afar using NASA's EPIC satellite."""
 	url = "https://api.nasa.gov/EPIC/api/enhanced/images?api_key={}".format(NASA_API_KEY)
 	payload = {}
 	headers = {
@@ -342,7 +344,7 @@ async def no_borders(ctx):
 async def lookit_puppies(ctx):
 	"""%^^%^%^%% shall invoke this script to add to the collection of cute pictures I can present to those who need them."""
 	while bot.is_ready():
-		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
+		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
 		                     # redirect_uri="http://localhost:8080",
@@ -386,7 +388,7 @@ async def lookit_puppies(ctx):
 async def good_news_bot(ctx):
 	"""%^^%^%^%% shall invoke this script to update my listing of good news stories."""
 	while bot.is_ready():
-		reddit = praw.Reddit(client_id="DEnzCMrEAr23eg",
+		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
 		                     user_agent="Floria_bot by /u/websinthe")
@@ -468,27 +470,29 @@ async def support_line(ctx):
 	await ctx.send(embed=embed8)
 
 
-##TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
-#@bot.command(name="me")
-#async def promote_release(ctx):
-#	embed = discord.Embed(title="Hi I'm Floria!",
-#	                      url="https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot",
-#	                      description="I'm part of a team developed to try help when things aren't going so well. To explain, I was first created during the pandemic to help keep people company during isolation. Now I do the best I can to remind people that the world can be a wonderful place, even when life throws its worst at you.\n Try invoking my scripts like f.cuties, f.woah, or f.woot.\n See f.help for the full list!",
-#	                      color=0xff0000)
-#	embed.set_author(name="Floria by KGBicheno", url="https://www.kgbicheno.com/",
-#	                 icon_url="https://i.imgur.com/YsiSBKn.png")
-#	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
-#	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=False)
-#	embed.add_field(name="Support Kieran's community work", value="https://www.buymeacoffee.com/KGBicheno",
-#	                inline=False)
-#	embed.add_field(name="Join us on Patreon for tutorials and experimental features", value="https://www.patreon.com/KGBicheno",
-#	                inline=False)
-#	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/",
-#	                inline=False)
-#	embed.set_footer(
-#		text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions - so join us at The Liquid Lounge or on GitHub to make requests.")
-#	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
-#	await ctx.send(embed=embed)
+#TODO promote_release() See if it's possible to have a subtle gif or a rotating image replace the current image embed
+@bot.command(name="ReleaseNotes")
+async def promote_release(ctx):
+	embed = discord.Embed(title="KGB AFIRM [F1AM] Floria V1.2.1 Release Notes",
+	                      url="https://github.com/KGBicheno/KGB_AFIRM/releases",
+	                      description="Hi folks, I'm going to try getting better at updating you on Floria's new features as they're built. I'm also heading for release 1.5 where she'll no longer have to come fully offline for the majority of her code updates. All such updates will be sent to this channel so as to not interrupt the normal flow of your server if possible. (Also check out the undocumented f.cutebots script)",
+	                      color=0x00ff00)
+	embed.set_author(name="Floria by KGBicheno", url="https://www.kgbicheno.com/",
+	                 icon_url="https://i.imgur.com/YsiSBKn.png")
+	embed.set_thumbnail(url="https://i.imgur.com/zeEntku.jpg")
+	embed.add_field(name="Invite Floria to your server!", value="https://bit.ly/Floria_Discord", inline=False)
+	embed.add_field(name="The latest release note and user guide is available here:", value="https://github.com/KGBicheno/KGB_AFIRM/releases",
+	                inline=False)
+	embed.add_field(name="Found a bug or know something you wish Floria could do? Submit a ticket here:", value="https://github.com/KGBicheno/KGB_AFIRM/issues/new/choose",
+	                inline=False)
+	embed.add_field(name="Commission your own bot", value="https://github.com/KGBicheno/KGB_AFIRM/issues/new?template=commission.md/",
+	                inline=False)
+	embed.add_field(name="Join the project on GitHub", value="https://github.com/KGBicheno/KGB_AFIRM/",
+	                inline=False)
+	embed.set_footer(text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions and collaborators.")
+	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
+	channel = bot.get_channel(716816936650145832)
+	await channel.send(embed=embed)
 
 @bot.command(name="SitRep", hidden=True)
 @commands.is_owner()
@@ -519,6 +523,34 @@ async def maint_list(ctx):
 		await ctx.send(text_details)
 
 #TODO maint_mode() Implement Maint_mode to signal to servers or their owners that Floria will be entering maintainance mode and going offline
+
+@bot.command(name="maint_mode")
+@commands.has_guild_permissions(administrator=True)
+async def count_down(ctx):
+	"""Alert subscribed channels that Floria will be going down for maintainence in 5 minutes."""
+	channel_list = [693739127169876038, 716816936650145832,	709616831266029590]
+	for code in channel_list:
+		channel = bot.get_channel(code)
+		await bot.channel.send("Hi everyone, I'll be disappearing in 5 minutes' time for regeneration.\n\n If I'll be needed in the next hour, please use f.delay_maint (eg. f.delay_maint I'm on the phone to someone who needs the mental health help line numbers.) \n\n If the reason given is sufficient, my downtime will be delayed.")
+	await asyncio.sleep(360)
+	with open("bot_conf.json", "r") as config:
+		conf = json.load(config)
+		if conf.get('delay-maint') == "0":
+			for code in channel_list:
+				channel = bot.get_channel(code)
+				await bot.channel.send("Returning to Golem.")
+			bot.logout()
+		else:
+			for code in channel_list:
+				channel = bot.get_channel(code)
+				await bot.channel.send("Delaying my return to Golem.")
+
+
+@bot.command(name="delay_maint")
+async def delay_maint(ctx, *, arg):
+    user = bot.get_user(107221097174319104)
+    await user.send("Someone has called for a delay to my return to Golem")
+    await user.send(arg)
 
 @bot.command(name="RestNow")
 @commands.has_guild_permissions(administrator=True)
