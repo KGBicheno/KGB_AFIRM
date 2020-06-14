@@ -9,9 +9,9 @@ from kgb_afirm.floria_bot import FloriaBot
 def get_env_var(name: str):
     """Check that an env var exists, and get the value."""
     value = os.getenv(name)
-    # if not value:
-    #     raise ValueError(f"An environment variable is missing, please set '{name}'.")
-    return value or '123'
+    if not value:
+        raise ValueError(f"An environment variable is missing, please set '{name}'.")
+    return value
 
 
 def run_floria():
