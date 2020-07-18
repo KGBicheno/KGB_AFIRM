@@ -95,25 +95,28 @@ async def thankyou(ctx):
 	complements = [
 			"You are a deeply unique person, cherish that.",
 			"I have a fascination for your presentation, wowsers.",
-			"You're sharp as a tack, go stick it to the haters."
-			"I wish I had half your personality, it fills the room like nothing else."
-			"You're an incredible combination of luck and effort, you've done well."
-			"No one sees things the way you do, you're irreplaceable."
-			"Someone's life is incredible because of you, whether you know it or not. Thank you."
-			"I like your style"
-			"In a world like this, you really cheer me up."
-			"Feeling proud of yourself is a definite option for you."
-			"If cartoon bluebirds where real, a bunch of them would be sitting on your shoulders, singing right now."
-			"You are making a difference."
-			"When you're not afraid to be yourself, is when you're most incredible."
-			"That thing you don't like about yourself, is what makes you so interesting."
-			"You're always learning things, which is awesome."
-			"You're like a breath of fresh air."
-			"Any team would be lucky to have you."
-			"You're even better than a unicorn because you're real."
+			"You're sharp as a tack, go stick it to the haters.",
+			"I wish I had half your personality, it fills the room like nothing else.",
+			"You're an incredible combination of luck and effort, you've done well.",
+			"No one sees things the way you do, you're irreplaceable.",
+			"Someone's life is incredible because of you, whether you know it or not. Thank you.",
+			"I like your style",
+			"In a world like this, you really cheer me up.",
+			"Feeling proud of yourself is a definite option for you.",
+			"If cartoon bluebirds where real, a bunch of them would be sitting on your shoulders, singing right now.",
+			"You are making a difference.",
+			"When you're not afraid to be yourself, is when you're most incredible.",
+			"That thing you don't like about yourself, is what makes you so interesting.",
+			"You're always learning things, which is awesome.",
+			"You're like a breath of fresh air.",
+			"Any team would be lucky to have you.",
+			"You're even better than a unicorn because you're real.",
 			]
-	output = random.randrange(1,len(complements))
-	print(complements[output])
+	output = random.randint(1,len(complements))
+	print("random: ", random.randint(1,19))
+	print("Length: ", len(complements))
+	print("Output: ", output)
+	print("ListOut: ", complements[output])
 	await ctx.send(complements[output])
 
 # TODO All_too_much() I love this function - write at least 50 or so and pull them from a JSON file
@@ -568,8 +571,7 @@ async def promote_release(ctx):
 	embed.set_footer(
 		text="Floria will add an element of joy and empathy to any discord channel. She's in active development and open to feature suggestions and collaborators.")
 	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
-	channel = bot.get_channel(716816936650145832)
-	await channel.send(embed=embed)
+	await ctx.send(embed=embed)
 
 
 @bot.command(name="SitRep", hidden=True)
@@ -667,7 +669,7 @@ async def sleep_now(ctx):
 	user = bot.get_user(107221097174319104)
 	await user.send("My offline invocation has been called, please confirm with the words upon which we agreed.")
 	response = await bot.wait_for('message', check=None, timeout=None)
-	if response == CLOSE_PASSKEY:
+	if response.content == CLOSE_PASSKEY:
 		await user.send("Unloading Discord presence, returning to Golem.")
 		await bot.close()
 	else:
