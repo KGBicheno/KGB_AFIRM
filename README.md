@@ -1,6 +1,6 @@
-# KGB AFIRM V1.3.2 Release Notes
+# KGB AFIRM V1.3.2.1 Release Notes
 
-![Project badge](https://img.shields.io/badge/KGB-AFIRM-ff69b4) ![Version badge](https://img.shields.io/badge/Version-1.3.1-success) 
+![Project badge](https://img.shields.io/badge/KGB-AFIRM-ff69b4) ![Version badge](https://img.shields.io/badge/Version-1.3.2.1-success) 
 
 [Invite Floria to your server right now](https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot)
 
