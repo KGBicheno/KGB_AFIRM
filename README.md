@@ -1,4 +1,4 @@
-# KGB AFIRM V1.3.1 Release Notes
+# KGB AFIRM V1.3.2 Release Notes
 
 ![Project badge](https://img.shields.io/badge/KGB-AFIRM-ff69b4) ![Version badge](https://img.shields.io/badge/Version-1.3.1-success) 
 
@@ -7,16 +7,10 @@
 ## Changelog
 
 ### Functions added
-- **f.thankyou** - Random complements
-- **f.cutebots** - Server requested promotion of cartoon artist
-- **f.releasenotes** - Displays an embed for release notes
-- **f.siterep** - Admin function describes Floria's status
-- **f.maint_list** - Admin function checks servers impacted by maint_mode
-- **f.maint_mode** - 5-minute alert that Floria will go offline for maintenance
-- **f.prior_warning** - Alerts servers Floria will be offline at a certain time
-- **f.delay_maint** - User-callable function to petition for delayed maintenance
-- **f.RestNow** - Admin function, password-protected, takes Floria offline
+- Further porting in preperation for v1.4 and version 1.5
 - bug fixes
+	- **ReleaseNotes** now no longer spams a specific channel
+	- Password protection on **RestNow** works as intended
 
 ## Contents
 
@@ -268,3 +262,14 @@ async def sleep_now(ctx):
 ```
 
 Calls the close() method on Floria, dropping her from the server. I'm yet to test if this drops her from all servers she's active on.
+
+[[V1.0.0-ReleaseNotes]]
+[[V1.2.1-ReleaseNotes]]
+[[V1.3.1-ReleaseNotes]]
+[[V1.3.2-ReleaseNotes]]
+
+[[README]]
+[[PRIVACY_POLICY]]
+[[CODE_OF_CONDUCT]]
+[[CONTRIBUTING]]
+[[PRIVACY_POLICY]]
