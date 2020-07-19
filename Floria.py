@@ -543,7 +543,7 @@ async def support_line(ctx):
 @bot.command(name="ReleaseNotes")
 async def promote_release(ctx):
 	"""Display an embed with the latest Release notes."""
-	embed = discord.Embed(title="KGB AFIRM [F1AM] Floria V1.3.1 Release Notes",
+	embed = discord.Embed(title="KGB AFIRM [F1AM] Floria V1.3.2 Release Notes",
 	                      url="https://github.com/KGBicheno/KGB_AFIRM/releases",
 	                      description="""I've added a number of esteem invocations and increased the number of admin
 	                                  capabilities. We're hoping to introduce Floria to as many new servers as possible,

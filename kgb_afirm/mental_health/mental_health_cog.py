@@ -10,6 +10,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 
 class MentalHealthCog(commands.Cog, name='Mental Health Helper'):
+	"""Sealed within are invocations for temporarily improving the mood of one who would like comfort or may need
+	the attention of a mental health professional in the near future."""
 	_scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
 	_credentials = ServiceAccountCredentials.from_json_keyfile_name("/home/websinthe/code/KGB_AFIRM/Credentials.json",
@@ -18,10 +20,8 @@ class MentalHealthCog(commands.Cog, name='Mental Health Helper'):
 	_AFFIRM_SOURCE = _gclient.open("Affirmations")
 	_affirm_list = _AFFIRM_SOURCE.get_worksheet(0)
 
-	def __init__(self):
-		self.reddit_secret = os.getenv('REDDIT_SECRET')
-		self.refresh_token = os.getenv('REFRESH_TOKEN')
-		self.reddit_client_id = os.getenv('REDDIT_CLIENT_ID')
+	def __init__(self, bot):
+		self.bot = bot
 
 	# TODO You_are_okay() This is one of my favourite functions - write at least 50 more and pull them in from a JSON
 	#  file
