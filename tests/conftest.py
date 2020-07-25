@@ -12,6 +12,6 @@ from kgb_afirm.floria_bot import FloriaBot
 def bot(caplog, event_loop):
     bot = FloriaBot(owner_id=123456789, token='987654321', loop=event_loop)
     bot.create_bot()
-    dpytest.configure(bot.bot)
+    dpytest.configure(bot.discord_bot)
     yield bot
     dpytest.sent_queue.empty()

@@ -141,13 +141,7 @@ dmypy.json
 cython_debug/
 
 .gitignore
-.idea/.gitignore
-.idea/GrepConsole.xml
-.idea/KGB_AFIRM.iml
-.idea/dictionaries/
-.idea/inspectionProfiles/
-.idea/misc.xml
-.idea/modules.xml
+.idea/
 Credentials.json
 /cogs/
 calm_posts.json

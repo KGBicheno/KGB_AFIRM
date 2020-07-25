@@ -7,6 +7,14 @@ from discord.ext.commands import Context
 
 
 class SupportLinesCog(commands.Cog, name='Support Lines'):
+    """
+    We all need some support from time to time.
+    """
+
+    def __init__(self, bot):
+        self.bot = bot
+        self.custom_bot = None
+
     @commands.command(name="support")
     async def support_line(self, ctx: Context):
         """Support lines for mental health situations as needed. Please feel free to use them."""
@@ -34,4 +42,4 @@ def setup(bot):
     """
     Register this cog as an extension.
     """
-    bot.add_cog(SupportLinesCog())
+    bot.add_cog(SupportLinesCog(bot))

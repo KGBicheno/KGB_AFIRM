@@ -90,7 +90,7 @@ if __name__ == '__main__':
 # pip install -U aiohttp discord.py yaml
 
 # -- Tests --
-# installing packages for tests: pip install -U dpytest pytest coverage
+# installing packages for tests: pip install -U dpytest pytest coverage aresponses
 
 # To run tests, change directory to the top level of this repo, and run: pytest
 

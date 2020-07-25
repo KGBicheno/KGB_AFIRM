@@ -22,6 +22,7 @@ class MentalHealthCog(commands.Cog, name='Mental Health Helper'):
 
 	def __init__(self, bot):
 		self.bot = bot
+		self.custom_bot = None
 
 	# TODO You_are_okay() This is one of my favourite functions - write at least 50 more and pull them in from a JSON
 	#  file
@@ -129,4 +130,4 @@ def setup(bot):
 	"""
     Register this cog as an extension.
     """
-	bot.add_cog(MentalHealthCog())
+	bot.add_cog(MentalHealthCog(bot))
