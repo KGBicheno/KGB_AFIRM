@@ -17,14 +17,17 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 
+
 class CuteTimesCog(commands.Cog, name='Cute Times'):
 	"""Sometimes the world outside must be viewed through the correct glass, made from sands so pure one can only
 	see cute puppies, silly animals, and good news stories."""
+
 	def __init__(self, bot):
 		self.bot = bot
 		self.reddit_secret = os.getenv('REDDIT_SECRET')
 		self.refresh_token = os.getenv('REFRESH_TOKEN')
 		self.reddit_client_id = os.getenv('REDDIT_CLIENT_ID')
+		self.custom_bot = None
 
 	# TODO backup_aww_pics() include optional arguments for type of media to return
 	@commands.command(name="cuties")
@@ -159,4 +162,4 @@ def setup(bot):
 	"""
     Register this cog as an extension.
     """
-	bot.add_cog(CuteTimesCog())
+	bot.add_cog(CuteTimesCog(bot))

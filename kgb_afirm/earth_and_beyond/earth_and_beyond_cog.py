@@ -22,6 +22,7 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
     def __init__(self, bot):
         self._nasa_api_key = os.getenv('NASA_API_KEY', 'DEMO_KEY')
         self.bot = bot
+        self.custom_bot = None
 
     # TODO woah() Check the endpoint for description data
     #  to make the images searchable by topic and add an optional parameter
@@ -31,7 +32,7 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
         Invoke this script to cast your eyes across the universe to behold its wonders.
         What are our problems compared to such majesty? We are part of something staggering.
         """
-        self.bot.logger.info(f"woah has been invoked.")
+        self.custom_bot.logger.info(f"woah has been invoked.")
         await ctx.send("Aligning mirrors ...", delete_after=20)
         await asyncio.sleep(2)
         await ctx.send("Setting capture state ...", delete_after=20)
@@ -84,7 +85,7 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
         Invoke this script to scry the lands of the planet Mars through the eyes
         of the intrepid explorer, and my hero, Curiosity.
         """
-        self.bot.logger.info(f"mars has been invoked.")
+        self.custom_bot.logger.info(f"mars has been invoked.")
         await ctx.send("Establishing interplanetary connection ...", delete_after=50)
         await asyncio.sleep(2)
         await ctx.send("Spooling up FTL signal modulator ...", delete_after=50)
@@ -147,7 +148,7 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
     @commands.command(name="noborders")
     async def no_borders(self, ctx: Context):
         """View the world from afar using NASA's EPIC satellite."""
-        self.bot.logger.info(f"noborders has been invoked.")
+        self.custom_bot.logger.info(f"noborders has been invoked.")
         await ctx.send("Petitioning Golem's agent within the Deep Space Network — Golem rendering protocols.")
         await asyncio.sleep(3)
         await ctx.send("Translating response through META — success. Signal boosting through unknown carrier.")
@@ -173,11 +174,11 @@ class EarthAndBeyondCog(commands.Cog, name='Earth and Beyond'):
                     data = await response.json()
                     await asyncio.sleep(3)
                     await ctx.send("Response detected!", delete_after=50)
-                    self.bot.logger.info(f"noborders API call successful. Code 200.")
+                    self.custom_bot.logger.info(f"noborders API call successful. Code 200.")
                 else:
                     await ctx.send(self._error_display_text)
-                    self.bot.logger.info(f"noborders API request has failed.")
-                    self.bot.logger.info(response.status)
+                    self.custom_bot.logger.info(f"noborders API request has failed.")
+                    self.custom_bot.logger.info(response.status)
 
         # Once the response is loaded, split it out into variables for use in an embed
 
@@ -217,4 +218,4 @@ def setup(bot):
     """
     Register this cog as an extension.
     """
-    bot.add_cog(EarthAndBeyondCog())
+    bot.add_cog(EarthAndBeyondCog(bot))
