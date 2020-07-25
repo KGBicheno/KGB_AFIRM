@@ -1,16 +1,17 @@
-# KGB AFIRM V1.3.2.1 Release Notes
+# KGB AFIRM V1.3.3 Release Notes
 
-![Project badge](https://img.shields.io/badge/KGB-AFIRM-ff69b4) ![Version badge](https://img.shields.io/badge/Version-1.3.2.1-success) 
+![Project badge](https://img.shields.io/badge/KGB-AFIRM-ff69b4) ![Version badge](https://img.shields.io/badge/Version-1.3.3-success) 
 
 [Invite Floria to your server right now](https://discord.com/oauth2/authorize?client_id=697937257465905262&permissions=8&scope=bot)
 
+![Project Header](Floria_Header.svg)
+
 ## Changelog
 
-### Functions added
+### Bugs fixed
 - Further porting in preperation for v1.4 and version 1.5
-- bug fixes
-	- **ReleaseNotes** now no longer spams a specific channel
-	- Password protection on **RestNow** works as intended
+- Embed code now passes all tests
+- Cog conflict preventing proper login now passes more tests
 
 ## Contents
 
@@ -262,14 +263,3 @@ async def sleep_now(ctx):
 ```
 
 Calls the close() method on Floria, dropping her from the server. I'm yet to test if this drops her from all servers she's active on.
-
-[[V1.0.0-ReleaseNotes]]
-[[V1.2.1-ReleaseNotes]]
-[[V1.3.1-ReleaseNotes]]
-[[V1.3.2-ReleaseNotes]]
-
-[[README]]
-[[PRIVACY_POLICY]]
-[[CODE_OF_CONDUCT]]
-[[CONTRIBUTING]]
-[[PRIVACY_POLICY]]
