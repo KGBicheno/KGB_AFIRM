@@ -262,6 +262,42 @@ async def good_news_week(ctx):
 	await ctx.channel.send(v)
 
 
+
+@bot.command(name="dank")
+async def sorry_mum_i_am_maga(ctx):
+	"""Invoke this script to laugh your way through your older brother's vape juice"""
+	await ctx.send("GO GO POWER RANGAS MODE ENGAGED.", delete_after=60)
+	await ctx.send("Trigger Warning: Content is likely to offend on many levels and is not moderated. Use only in "
+	               "private channels.", delete_after=60)
+	with open("dank_memes.json", "r") as source:
+		yarn_container = json.load(source)
+	yarn_list = yarn_container["items"]
+	yarn_hit = random.randrange(1, len(yarn_list))
+	dict_yarn = yarn_list[yarn_hit]
+	v = dict_yarn.get('url')
+	belong_list = ["us",
+	               "me",
+	               "belong are memes your all.",
+	               "<@107221097174319104>",
+	               "Count Dankula",
+	               "NEVER GONNA GIVE YOU UP ...",
+	               "Moths",
+	               "main screen turn on.",
+	               "your mum."
+	               "git commit -m 'aannnnd Iiiiiiii will allways loove yoooouuuuuuuuuu!'",
+	               "I'm with the avengers, and I am an hero.",
+			"Ze germans.",
+			"The Greens Party, Long May they Looooooooooong Party."
+			]
+
+	randonum = random.randint(0, len(belong_list)-1)
+	print(randonum)
+	print("length: " + str(len(belong_list)))
+	send_text = "All your memes are belong to " + belong_list[randonum]
+	await ctx.channel.send(send_text, delete_after=60)
+	await ctx.channel.send(v)
+
+
 # TODO on_message() Find a way to have this activate on any embed-type message the bot sends
 @bot.listen()
 async def on_message(message):
@@ -434,7 +470,7 @@ async def good_news_bot(ctx):
 		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
-		                     user_agent="Floria_bot by /u/websinthe")
+		                     user_agent="Floria_bot")
 		calm_news_catalogue = dict()
 		# print(reddit.user.me())
 		with open("good_news.json", "r") as container:
@@ -451,6 +487,43 @@ async def good_news_bot(ctx):
 		pprint(calm_news_catalogue)
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
+
+@bot.command(name="heal_the_dank", hidden=True)
+async def shield_armour_face_dank(ctx):
+	"""Invoke this script to increase the variety of dank memes available to those who watch."""
+	print(ctx.author.id)
+	if ctx.author.id != 107221097174319104:
+		channel = bot.get_channel(693739127169876038)
+		await ctx.send("You failed to heal the dank, your raid party has wiped.")
+		gotcha = "<@" + str(ctx.author.id) + "> attempted to heal the dank but their raid has wiped."
+		await channel.send(gotcha)
+		print("<@" + str(ctx.author.id) + "> attempted to heal the dank but their raid has wiped.")
+		return 0
+	while bot.is_ready():
+		channel_ping = bot.get_channel(736546802941165579)
+		await channel.send("Floria is on rotation, healing the dank. The raid is still alive.")
+		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
+		                     client_secret=REDDIT_SECRET,
+		                     refresh_token=REFRESH_TOKEN,
+		                     user_agent="Floria_bot")
+		dank_memes_catalogue = dict()
+		# print(reddit.user.me())
+		with open("dank_memes.json", "r") as container:
+			dank_memes_catalogue = json.load(container)
+		subreddit = reddit.subreddit('dankmemes')
+		news_list = subreddit.hot(limit=10)
+		for submission in news_list:
+			if str(submission.id) not in dank_memes_catalogue.values():
+				yarn_dict = dict(id=str(submission.id), author=str(submission.author), title=str(submission.title),
+				                 url=str(submission.url))
+				dank_memes_catalogue['items'].append(yarn_dict)
+				await channel_ping.send("Healed!")
+		with open("dank_memes.json", "w") as storage:
+			json.dump(dank_memes_catalogue, storage, indent=2)
+		pprint(dank_memes_catalogue)
+		print("Last dank memes refill occurred at:", datetime.now())
+		await channel_ping.send("Floria is OOM, rotating to off-heal.")
+		await asyncio.sleep(120)
 
 
 @bot.command(name="support")
@@ -573,7 +646,6 @@ async def promote_release(ctx):
 	embed.set_image(url="https://i.imgur.com/6Ckhy5I.png")
 	await ctx.send(embed=embed)
 
-
 @bot.command(name="SitRep", hidden=True)
 @commands.is_owner()
 async def guild_spread(ctx):
@@ -642,16 +714,6 @@ async def prior_warning(ctx):
 	for code in channel_list:
 		channel = bot.get_channel(code)
 		await bot.channel.send("Hi everyone, I'll be going offline for server upgrades at 10am AEST (2am CET).\n\n If I'll be needed during that 4-hour period, please use f.delay_maint (eg. f.delay_maint I'm on the phone to someone who needs the mental health help line numbers.) \n\n If the reason given is sufficient, my downtime will be delayed.")
-
-
-
-@bot.command(name="reticulating_splines", hidden=True)
-@commands.has_guild_permissions(administrator=True)
-async def word_of_god(ctx):
-	"""Messages of importance can be hard-coded into this function."""
-	channel = bot.get_channel(693739127169876038)
-	await channel.send(
-		"META reports a sighting of the fifth. He is behaving outside of predicted bounds. Resetting vectors")
 
 
 @bot.command(name="delay_maint")
