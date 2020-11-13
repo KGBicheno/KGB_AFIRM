@@ -128,7 +128,6 @@ py==1.8.1
 py2neo==4.3.0
 pyasn1==0.4.8
 pyasn1-modules==0.2.8
-pycrypto==2.6.1
 Pygments==2.3.1
 PyGObject==3.36.0
 PyHamcrest==1.9.0
