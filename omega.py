@@ -2,6 +2,7 @@
 to that process, killing Floria when she's in background/ethereal mode.
 """
 import os
+import signal
 
 with open("judas.txt", "r") as failsafe:
     floria_pid = failsafe.readline()
