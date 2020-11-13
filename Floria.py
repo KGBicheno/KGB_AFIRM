@@ -20,7 +20,7 @@ from oauth2client.service_account import ServiceAccountCredentials
 # TODO f.help | Override Floria's help class to have it present more clearly and professionaly
 
 with open("judas.txt", "w") as failsafe:
-    failsafe.write(os.getpid())
+    failsafe.write(str(os.getpid()))
 
 scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
          "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
