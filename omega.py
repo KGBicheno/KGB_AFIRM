@@ -7,4 +7,4 @@ import signal
 with open("judas.txt", "r") as failsafe:
     floria_pid = failsafe.readline()
 
-os.kill(floria_pid, signal.SIGKILL)
+os.kill(int(floria_pid), signal.SIGKILL)
