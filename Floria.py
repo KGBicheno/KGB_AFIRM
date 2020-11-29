@@ -17,6 +17,9 @@ from discord.ext import commands
 from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 
+from ibm_watson import AssistantV2
+from imb_cloud_sdk_core.authenticators import IAMAuthenticator
+
 # TODO f.help | Override Floria's help class to have it present more clearly and professionaly
 
 with open("judas.txt", "w") as failsafe:
@@ -60,8 +63,31 @@ REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 NASA_API_KEY = os.getenv('NASA_API_KEY')
 REDDIT_CLIENT_ID = os.getenv('REDDIT_CLIENT_ID')
 CLOSE_PASSKEY = os.getenv('CLOSE_PASSKEY')
+IBM_API_KEY=os.getenv('IBM_API_KEY')
+IBM_URL=os.getenv('IBM_URL')
+IBM_ASSISTANT_ID = os.getenv('IBM_ASSISTANT_ID')
 client = discord.Client
 
+authenticator = IAMAuthenticator(IBM_API_KEY)
+assistant = AssistantV2(
+	version='2020-09-24',
+	authenticator=authenticator
+)
+
+assistant.set_service_url(IBM_URL)
+assistant.set_disable_ssl_verification(True)
+
+
+async def get_IBM_session(assistant_id):
+	while assistant_id != 0:
+		response = assistant.create_session(
+			assistant.get_id(assistant_id)
+		).get_result()
+		session_id = response['session_id']
+		await asyncio.sleep(300)
+		yield session_id
+
+session_id = get_IBM_session(IBM_ASSISTANT_ID)
 
 # TODO on_ready() Have this integrate with bot_conf and look into finally implementing cogs
 @bot.event
@@ -81,6 +107,19 @@ async def on_member_join(ctx, member):
 		await ctx.send("I feel much safer now that you're here, sister. Welcome back, Brook.")
 	else:
 		await ctx.send("What a lovely place to place to be.")
+
+@bot.command(name="f")
+async def chat(ctx, *, message: str):
+    response = assistant.message(
+    assistant_id='IBM_ASSISTANT_ID',
+    session_id='session_id',
+    input={
+        'message_type': 'text',
+        'text': 'Hello'
+    }).get_result()
+    #print(response.output.generic.text)
+    #await ctx.send(response.output.generic.text)
+    print(response)
 
 
 # TODO You_are_okay() This is one of my favourite functions - write at least 50 more and pull them in from a JSON file
