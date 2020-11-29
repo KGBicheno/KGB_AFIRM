@@ -108,7 +108,7 @@ async def on_member_join(ctx, member):
 	else:
 		await ctx.send("What a lovely place to place to be.")
 
-@bot.command(name="f")
+@bot.command(name="chat")
 async def chat(ctx, *, message: str):
     response = assistant.message(
     assistant_id='IBM_ASSISTANT_ID',
