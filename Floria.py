@@ -18,7 +18,7 @@ from dotenv import load_dotenv
 from oauth2client.service_account import ServiceAccountCredentials
 
 from ibm_watson import AssistantV2
-from imb_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
 
 # TODO f.help | Override Floria's help class to have it present more clearly and professionaly
 
