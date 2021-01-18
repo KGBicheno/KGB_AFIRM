@@ -343,9 +343,10 @@ async def lookit_puppies(ctx):
 		with open("calm_posts.json", "r") as container:
 			calm_posts_catalogue = json.load(container)
 		print("Calm posts catalogue opened. \n Attempting to connect to subreddit.")
-		subreddit = reddit.subreddit("aww")
-		print("Subreddit connected.")
-		aww_list = subreddit.hot(limit=10)
+		aww_subreddit = reddit.subreddit("aww")
+		print("Subreddit connected.\n" + aww_subreddit)
+		aww_list = aww_subreddit.hot(limit=10)
+		print(type(aww_list))
 		cute_list = []
 		for submission in aww_list:
 			try:
