@@ -345,6 +345,7 @@ async def lookit_puppies(ctx):
 		print("Calm posts catalogue opened. \n Attempting to connect to subreddit.")
 		aww_subreddit = reddit.subreddit("aww")
 		print("Subreddit connected.")
+		print(aww_subreddit.description)
 		#aww_list = aww_subreddit.hot(limit=10)
 		print("trying direct iteration.")
 		cute_list = []
