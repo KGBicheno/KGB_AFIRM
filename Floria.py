@@ -327,7 +327,9 @@ async def no_borders(ctx):
 @bot.command(name="refill_the_cuties", hidden=True)
 async def lookit_puppies(ctx):
 	"""%^^%^%^%% shall invoke this script to add to the collection of cute pictures I can present to those who need them."""
+	print("Refilling the cuties.")
 	while bot.is_ready():
+		print("Loop engaged. \n Attempting Authentication.")
 		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
 		                     client_secret=REDDIT_SECRET,
 		                     refresh_token=REFRESH_TOKEN,
@@ -335,17 +337,20 @@ async def lookit_puppies(ctx):
 		                     user_agent="Floria_bot by /u/websinthe")
 		# print(reddit.auth.scopes())
 		# print(reddit.auth.url(["read, identity, account, history"], "discord_bot", "permanent"))
+		print("Authentication has thrown no errors")
 		calm_posts_catalogue = dict()
 		# print(reddit.user.me())
 		with open("calm_posts.json", "r") as container:
 			calm_posts_catalogue = json.load(container)
-		pprint(calm_posts_catalogue)
+		print("Calm posts catalogue opened. \n Attempting to connect to subreddit.")
 		subreddit = reddit.subreddit("aww")
+		print("Subreddit connected.")
 		aww_list = subreddit.hot(limit=10)
 		cute_list = []
 		for submission in aww_list:
 			try:
 				cute_pic = submission.url
+				print(cute_pic)
 				cute_list.append(cute_pic)
 			except:
 				cute_mid = submission.secure_media["reddit_video"]
@@ -393,43 +398,6 @@ async def good_news_bot(ctx):
 		pprint(calm_news_catalogue)
 		print("Last good news refill occurred at:", datetime.now())
 		await asyncio.sleep(600)
-
-@bot.command(name="heal_the_dank", hidden=True)
-async def shield_armour_face_dank(ctx):
-	"""Invoke this script to increase the variety of dank memes available to those who watch."""
-	print(ctx.author.id)
-	if ctx.author.id != 107221097174319104:
-		channel = bot.get_channel(693739127169876038)
-		await ctx.send("You failed to heal the dank, your raid party has wiped.")
-		gotcha = "<@" + str(ctx.author.id) + "> attempted to heal the dank but their raid has wiped."
-		await channel.send(gotcha)
-		print("<@" + str(ctx.author.id) + "> attempted to heal the dank but their raid has wiped.")
-		return 0
-	while bot.is_ready():
-		channel_ping = bot.get_channel(736546802941165579)
-		await channel.send("Floria is on rotation, healing the dank. The raid is still alive.")
-		reddit = praw.Reddit(client_id=REDDIT_CLIENT_ID,
-		                     client_secret=REDDIT_SECRET,
-		                     refresh_token=REFRESH_TOKEN,
-		                     user_agent="Floria_bot")
-		dank_memes_catalogue = dict()
-		# print(reddit.user.me())
-		with open("dank_memes.json", "r") as container:
-			dank_memes_catalogue = json.load(container)
-		subreddit = reddit.subreddit('dankmemes')
-		news_list = subreddit.hot(limit=10)
-		for submission in news_list:
-			if str(submission.id) not in dank_memes_catalogue.values():
-				yarn_dict = dict(id=str(submission.id), author=str(submission.author), title=str(submission.title),
-				                 url=str(submission.url))
-				dank_memes_catalogue['items'].append(yarn_dict)
-				await channel_ping.send("Healed!")
-		with open("dank_memes.json", "w") as storage:
-			json.dump(dank_memes_catalogue, storage, indent=2)
-		pprint(dank_memes_catalogue)
-		print("Last dank memes refill occurred at:", datetime.now())
-		await channel_ping.send("Floria is OOM, rotating to off-heal.")
-		await asyncio.sleep(120)
 
 
 @bot.command(name="support")
