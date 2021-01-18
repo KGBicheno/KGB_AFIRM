@@ -344,7 +344,7 @@ async def lookit_puppies(ctx):
 			calm_posts_catalogue = json.load(container)
 		print("Calm posts catalogue opened. \n Attempting to connect to subreddit.")
 		aww_subreddit = reddit.subreddit("aww")
-		print("Subreddit connected.\n" + aww_subreddit)
+		print("Subreddit connected.")
 		aww_list = aww_subreddit.hot(limit=10)
 		print(type(aww_list))
 		cute_list = []
