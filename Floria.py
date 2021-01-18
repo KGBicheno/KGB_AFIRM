@@ -15,22 +15,11 @@ from bs4 import BeautifulSoup
 from discord import channel
 from discord.ext import commands
 from dotenv import load_dotenv
-# from oauth2client.service_account import ServiceAccountCredentials
 
 # TODO f.help | Override Floria's help class to have it present more clearly and professionaly
 
 with open("judas.txt", "w") as failsafe:
     failsafe.write(str(os.getpid()))
-
-# scope = ["https://spreadsheets.google.com/feeds", 'https://www.googleapis.com/auth/spreadsheets',
-#         "https://www.googleapis.com/auth/drive.file", "https://www.googleapis.com/auth/drive"]
-
-# credentials = ServiceAccountCredentials.from_json_keyfile_name("Credentials.json",
-#                                                               scope)
-# TODO ||Google block|| Completely remove my use of Google Sheets from Floria.
-# gclient = gspread.authorize(credentials)
-# AFFIRM_SOURCE = gclient.open("Affirmations")
-# affirm_list = AFFIRM_SOURCE.get_worksheet(0)
 
 
 # TODO get_prefix() Put more thought into how you're advertising Floria's functions to new users
@@ -155,55 +144,6 @@ async def clear_bot_messages(ctx, messages):
 		await ctx.send("Please enter a number from 1 to 100. I'll clear that many messages from this channel for you.")
 
 
-# TODO called_affirmations() Overhaul this function to run off a JSON file instead of Google Sheets
-# @bot.command(name="spoons")
-# async def called_affirmation(ctx):
-#	"""We all run out of spoons sometimes, and affirmations can help regain them. Invoke this script and repeat a psuedo-randomly chosen affirmation after me."""
-#	affirmations = affirm_list.get_all_records()
-#	upper = len(affirmations)
-#	call_affirmation_number = random.randrange(2, upper)
-#	affirm_list.update_cell(1, 8, call_affirmation_number)
-#	cell = affirm_list.cell(call_affirmation_number, 1).value
-#	await ctx.send("An affirmation I sometimes use is - " + cell)
-#	current_value = int(affirm_list.cell(call_affirmation_number, 5).value)
-#	affirm_list.update_cell(call_affirmation_number, 5, current_value + 1)
-#	return call_affirmation_number
-#
-
-# TODO timed_affirmations() overhaul this function to include a larger array of breathing excercises and run off JSON instead of GS
-# @bot.command(name="CalmTime")
-# @commands.has_guild_permissions(manage_channels=True)
-# async def timed_affirmation(ctx):
-#	"""Invoking this script will start a timer. Every few minutes I'll take the channel through a breathing exercise and then finish with a picture of something cute."""
-#	while bot.is_ready():
-#		affirmations = affirm_list.get_all_records()
-#		upper = len(affirmations)
-#		call_affirmation_number = random.randrange(2, upper)
-#		affirm_list.update_cell(1, 8, call_affirmation_number)
-#		cell = affirm_list.cell(call_affirmation_number, 1).value
-#		await ctx.send("Breathe in for four ... ", delete_after=20)
-#		await asyncio.sleep(6)
-#		await ctx.send("Hold for four ... ", delete_after=20)
-#		await asyncio.sleep(6)
-#		await ctx.send("Breathe out for six ... ", delete_after=20)
-#		await asyncio.sleep(8)
-#		await ctx.send("An affirmation I sometimes use is - " + cell, delete_after=20)
-#		current_value = int(affirm_list.cell(call_affirmation_number, 5).value)
-#		affirm_list.update_cell(call_affirmation_number, 5, current_value + 1)
-#		with open("calm_posts.json", "r") as source:
-#			pic_container = json.load(source)
-#		pic_list = pic_container["images"]
-#		pic_hit = random.randrange(1, len(pic_list))
-#		dict_pic = pic_list[pic_hit]
-#		v = dict_pic.get('url')
-#		await asyncio.sleep(20)
-#		await ctx.channel.purge(limit=4)
-#		await asyncio.sleep(20)
-#		await ctx.channel.send(v)
-#		await ctx.channel.send("Here's some cute, I hope it helps.", delete_after=20)
-#		await asyncio.sleep(490)
-#
-
 Rescue = []
 list_index = 0
 
@@ -264,42 +204,6 @@ async def good_news_week(ctx):
 	await ctx.channel.send(v)
 
 
-
-@bot.command(name="dank")
-async def sorry_mum_i_am_maga(ctx):
-	"""Invoke this script to laugh your way through your older brother's vape juice"""
-	await ctx.send("GO GO POWER RANGAS MODE ENGAGED.", delete_after=60)
-	await ctx.send("Trigger Warning: Content is likely to offend on many levels and is not moderated. Use only in "
-	               "private channels.", delete_after=60)
-	with open("dank_memes.json", "r") as source:
-		yarn_container = json.load(source)
-	yarn_list = yarn_container["items"]
-	yarn_hit = random.randrange(1, len(yarn_list))
-	dict_yarn = yarn_list[yarn_hit]
-	v = dict_yarn.get('url')
-	belong_list = ["us",
-	               "me",
-	               "belong are memes your all.",
-	               "<@107221097174319104>",
-	               "Count Dankula",
-	               "NEVER GONNA GIVE YOU UP ...",
-	               "Moths",
-	               "main screen turn on.",
-	               "your mum."
-	               "git commit -m 'aannnnd Iiiiiiii will allways loove yoooouuuuuuuuuu!'",
-	               "I'm with the avengers, and I am an hero.",
-			"Ze germans.",
-			"The Greens Party, Long May they Looooooooooong Party."
-			]
-
-	randonum = random.randint(0, len(belong_list)-1)
-	print(randonum)
-	print("length: " + str(len(belong_list)))
-	send_text = "All your memes are belong to " + belong_list[randonum]
-	await ctx.channel.send(send_text, delete_after=60)
-	await ctx.channel.send(v)
-
-
 # TODO on_message() Find a way to have this activate on any embed-type message the bot sends
 @bot.listen()
 async def on_message(message):
@@ -316,7 +220,7 @@ async def nasa_apod(ctx):
 	"""Invoke this script to cast your eyes across the universe to behold its wonders. What are our problems compared to such majesty? We are part of something staggering. """
 	url = "https://api.nasa.gov/planetary/apod"
 	await ctx.send("aligning mirrors")
-	year = str(random.randint(1996, 2020))
+	year = str(random.randint(1996, 2021))
 	print(year)
 	month = str(random.randint(1, 12)).zfill(2)
 	print(month)
