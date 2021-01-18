@@ -345,10 +345,12 @@ async def lookit_puppies(ctx):
 		print("Calm posts catalogue opened. \n Attempting to connect to subreddit.")
 		aww_subreddit = reddit.subreddit("aww")
 		print("Subreddit connected.")
-		aww_list = aww_subreddit.hot(limit=10)
-		print(type(aww_list))
+		#aww_list = aww_subreddit.hot(limit=10)
+		print("trying direct iteration.")
 		cute_list = []
-		for submission in aww_list:
+		for submission in aww_subreddit.hot(limit=10):
+			print("Direct iteration did not immediately fail.")
+			print(submission.url)
 			try:
 				cute_pic = submission.url
 				print(cute_pic)
