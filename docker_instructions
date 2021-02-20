@@ -1,0 +1,5 @@
+So far, once we take down Floria from running on Gehirn, we can use
+
+docker run -p 80:80 -p 443:443 afirm_floria:monolith_1
+
+This has not yet been shown to work
